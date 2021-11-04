@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 13:25:17 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/04 14:46:10 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
-# define PI 3.141593
 # define SCREEN_RES_H 640
 # define SCREEN_RES_W 800
 

@@ -3,7 +3,8 @@ CC = gcc
 INC = ./inc/cub3d.h
 FLAGS = -Wall -Werror -Wextra
 LIB_NAME = cub3D.a
-SRC = ${addprefix srcs/,	free_stuffs.c \
+SRC = ${addprefix srcs/,	file.c \
+							free_stuffs.c \
 							main.c \
 							map.c \
 							texture.c}
