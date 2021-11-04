@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 13:40:13 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/04 12:59:12 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/04 13:28:27 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int main(int ac, char **av)
+static int	get_texture(t_map *map, char *texture)
 {
-	int		fd;
-	t_map	*map;
+	(void)map;
+	printf("OUI : %s\n", texture);
+	return (0);
+}
 
-	if (ac == 2)
+int	get_textures(int fd, t_map *map)
+{
+	char	**line;
+	int		gnl;
+	int		i;
+
+	i = 0;
+	line = NULL;
+	gnl = get_next_line(fd, line);
+	if (gnl == -1)
+		return (printf("Error: texture\n"));
+	while (gnl > 0)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
-			return (printf("%s\n", strerror(errno)));
-		map = get_map(fd);
-		if (!map)
-			return (printf("Error: map not acquired\n"));
-		close(fd);
-		free_map(map);
+		if (!ft_strncmp(line[i], "NO", 2))
+			get_texture(map, "NO");
+		i++;
+		gnl = get_next_line(fd, line);
 	}
-	else
-		printf("Error: argument\n");
 	return (0);
 }

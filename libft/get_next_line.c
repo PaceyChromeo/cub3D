@@ -6,11 +6,11 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/12 16:56:50 by pjacob            #+#    #+#             */
-/*   Updated: 2021/05/12 10:30:49 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/04 13:20:45 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/cub3d.h"
+#include "libft.h"
 
 static char	*ft_joinfree(char *s1, char *s2)
 {

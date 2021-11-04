@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:38:19 by pjacob            #+#    #+#             */
-/*   Updated: 2021/03/22 11:38:54 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/04 13:24:33 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <string.h>
 # include <fcntl.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 4096
+# endif
 typedef struct s_list
 {
 	void			*content;
@@ -57,6 +60,7 @@ int		ft_isprint(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_lstsize(t_list *lst);
+int		get_next_line(int fd, char **line);
 
 // CHAR FONCTIONS
 char	*ft_strnstr(const char *big, const char *little, size_t len);
@@ -72,7 +76,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_strncpy(char *dst, const char *src, size_t n);
 
 // T_LIST FONCTIONS
-
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *list);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 10:50:12 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/04 13:25:17 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,29 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/errno.h>
 # include <mlx.h>
 # include "../libft/libft.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif
 # define PI 3.141593
+# define SCREEN_RES_H 640
+# define SCREEN_RES_W 800
+
+typedef struct	s_map
+{
+	char	*north_text;
+	char	*south_text;
+	char	*west_text;
+	char	*east_text;
+	int		*floor;
+	int		*ceiling;
+}				t_map;				
+
+/************   MAP    *********/
+t_map	*get_map(int fd);
+/************   TEXTURE    *********/
+int		get_textures(int fd, t_map *map);
+/************   FREE_STUFFS    *********/
+void	free_map(t_map *map);
 
 #endif
