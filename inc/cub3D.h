@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 14:46:10 by pacey            ###   ########.fr       */
+/*   Updated: 2021/11/05 11:44:07 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ typedef struct	s_map
 	char	*east_text;
 	int		*floor;
 	int		*ceiling;
+	char	**tab;
+	int		line_length;
+	int		count_line;
 }				t_map;				
 
 /************   MAP    *********/
@@ -42,5 +45,9 @@ t_map	*get_map(int fd);
 int		get_textures(int fd, t_map *map);
 /************   FREE_STUFFS    *********/
 void	free_map(t_map *map);
+void	free_tab(char **tab);
+/***********	DEBUG	***********/
+void	print_tab(char **tab);
+
 
 #endif
