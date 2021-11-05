@@ -9,7 +9,8 @@ SRC = ${addprefix srcs/,	color.c \
 							free_stuffs.c \
 							main.c \
 							map.c \
-							texture.c}
+							texture.c \
+							tab.c}
 
 OBJ = ${SRC:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 16:53:17 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 16:59:37 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,14 @@ typedef struct	s_map
 	int		count_line;
 }				t_map;				
 
-/************   FILE    *********/
+/************   COLOR    *********/
 int		get_colors(int fd, t_map *map);
 /************   FILE    *********/
 int		check_file(char *file);
 /************   MAP    *********/
 t_map	*get_map(int fd, char *av);
+/************   TAB    *********/
+int		get_tab(t_map *map);
 /************   TEXTURE    *********/
 int		get_textures(int fd, t_map *map);
 /************   FREE_STUFFS    *********/
