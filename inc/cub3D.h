@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 15:51:24 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 16:53:17 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct	s_map
 	int		*ceiling;
 	char	**tab;
 	char	*map_name;
+	int		line_length;
+	int		count_line;
 }				t_map;				
 
 /************   FILE    *********/

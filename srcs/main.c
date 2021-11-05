@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/05 11:49:43 by pjacob           ###   ########.fr       */
+=======
+/*   Updated: 2021/11/05 11:36:33 by hkrifa           ###   ########.fr       */
+>>>>>>> d73c9c30c84b42200d1e0e030117212329b55924
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +43,6 @@ int main(int ac, char **av)
 	else if (ac == 1)
 		printf("Error: usage: ./cub3D [\"path/to/map\"]\n");
 	else
-		printf("Error: too many arguments00\n");
+		printf("Error: too many arguments\n");
 	return (0);
 }

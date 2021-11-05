@@ -6,13 +6,51 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 15:52:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 16:53:43 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static t_map	*map_init(char *av)
+void	get_tabnorm(char *tab, char **tmp, t_map *map, char *line)
+{
+	int	i;
+	int	fd;
+
+	i = 0;
+	free(line);
+	fd = open(tab, O_RDONLY);
+	while (i < map->count_line)
+	{
+		get_next_line(fd, &line);
+		tmp[i] = ft_strdup(line);
+		i++;
+		free(line);
+	}
+}
+
+char	**get_tab(char *tab, t_map *map)
+{
+	char	*line;
+	char	**tmp;
+	int		fd;
+
+	line = NULL;
+	map->count_line = 1;
+	fd = open(tab, O_RDONLY);
+	while (get_next_line(fd, &line) == 1)
+	{
+		map->count_line++;
+		free(line);
+	}
+	tmp = ft_calloc(sizeof(tmp), map->count_line + 1);
+	if (!tmp)
+		return (0);
+	get_tabnorm(tab, tmp, map, line);
+	return (tmp);
+}
+
+static t_map	*map_init(void)
 {
 	t_map	*map;
 
@@ -36,7 +74,14 @@ static t_map	*map_init(char *av)
 t_map	*get_map(int fd, char *av)
 {
 	t_map	*map;
+	int i;
+	int j;
+	int count;
+	char **tmp;
 
+	i = 0;
+	j = 0;
+	count = 0;
 	map = map_init(av);
 	if (!map)
 		return (NULL);
@@ -44,6 +89,29 @@ t_map	*get_map(int fd, char *av)
 		return (NULL);
 	if (get_colors(fd, map))
 		return (NULL);
+	
+	tmp = get_tab(map);
+	while (tmp[i])
+	{
+		if (tmp[i][0] == '1' || tmp[i][0] == ' ')
+			count++;
+		i++;
+	}
+	map->tab = malloc(sizeof(map->tab) * count + 1);
+	i = 0;
+	while (tmp[i])
+	{
+		if (tmp[i][0] == '1' || tmp[i][0] == ' ')
+		{
+			map->tab[j] = ft_strdup(tmp[i]);
+			free(tmp[i]);
+			j++;
+		}
+		i++;
+	}
+	map->tab[j] = NULL;
+	map->count_line = count;
+	free(tmp);
 	print_map(map);
 	return (map);
 }
