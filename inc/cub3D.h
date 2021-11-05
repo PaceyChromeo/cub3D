@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 14:46:10 by pacey            ###   ########.fr       */
+/*   Updated: 2021/11/05 15:51:24 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,31 @@
 
 typedef struct	s_map
 {
+	
 	char	*north_text;
 	char	*south_text;
 	char	*west_text;
 	char	*east_text;
 	int		*floor;
 	int		*ceiling;
+	char	**tab;
+	char	*map_name;
 }				t_map;				
 
+/************   FILE    *********/
+int		get_colors(int fd, t_map *map);
+/************   FILE    *********/
+int		check_file(char *file);
 /************   MAP    *********/
-t_map	*get_map(int fd);
+t_map	*get_map(int fd, char *av);
 /************   TEXTURE    *********/
 int		get_textures(int fd, t_map *map);
 /************   FREE_STUFFS    *********/
-void	free_map(t_map *map);
+void	free_tab(char **tab);
+void	free_and_close(t_map *map, int fd);
+/************   DEBUG    *********/
+int		print_or_count_tab(char **tab, int poc);
+void	print_map(t_map *map);
+
 
 #endif

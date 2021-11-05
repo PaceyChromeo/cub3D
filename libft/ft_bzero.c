@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 10:42:19 by pjacob            #+#    #+#             */
-/*   Updated: 2021/03/22 10:47:22 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 12:47:52 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*str;
-	size_t			i;
+	int		*str;
+	size_t	i;
 
 	i = 0;
-	str = (unsigned char *)s;
+	str = (int *)s;
 	while (i++ < n)
 		*(str++) = 0;
 }
