@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_erros.c                                        :+:      :+:    :+:   */
+/*   map_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:25:57 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/05 15:31:51 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/06 22:57:37 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	check_map_errornorm(int i, int j, char **tab, t_map *map)
+static void	ft_check_map_errornorm(int i, int j, char **tab, t_map *map)
 {
 	if (i == 0 || j == 0 || i == map->count_line - 1
 		|| j == map->line_length - 1)
 	{
-		if (tab[i][j] != '1' || tab[i][j] != ' ')
+		if (tab[i][j] != '1' && tab[i][j] != ' ')
 		{
 			ft_putendl_fd("Error : The map is not surrounded by walls",
 				STDERR_FILENO);

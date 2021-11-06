@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 16:59:37 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/06 22:57:04 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/errno.h>
-//# include <mlx.h>
-# include "../mlx_linux/mlx.h"
+# include <mlx.h>
 # include "../libft/libft.h"
 
 # define SCREEN_RES_H 640
@@ -48,6 +47,8 @@ int		get_colors(int fd, t_map *map);
 int		check_file(char *file);
 /************   MAP    *********/
 t_map	*get_map(int fd, char *av);
+/************   MAP ERRORS    *********/
+int		check_map_error(char **tab, t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
 /************   TEXTURE    *********/
@@ -58,6 +59,7 @@ void	free_and_close(t_map *map, int fd);
 /************   DEBUG    *********/
 int		print_or_count_tab(char **tab, int poc);
 void	print_map(t_map *map);
+void	print_tab(char **tab);
 
 
 #endif

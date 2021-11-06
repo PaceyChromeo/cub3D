@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 12:28:36 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 15:53:17 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/06 22:55:09 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,16 @@ void	print_map(t_map *map)
 	if (map->tab)
 		print_or_count_tab(map->tab, 1);
 	printf("map_name : %s\n", map->map_name);
+}
+
+void	print_tab(char **tab)
+{
+	int i;
+
+	i = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
 }
