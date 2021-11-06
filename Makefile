@@ -27,7 +27,7 @@ endif
 
 %o:%c
 	@printf "Please wait...\r"
-	@${CC} -Xlinker --verbose ${FLAGS} ${INC_MLX} -c $< -o $@
+	@${CC} ${FLAGS} ${INC_MLX} -c $< -o $@
 all: ${NAME}
 
 ${NAME}: ${OBJ}
