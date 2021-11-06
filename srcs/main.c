@@ -31,6 +31,6 @@ int main(int ac, char **av)
 	else if (ac == 1)
 		printf("Error: usage: ./cub3D [\"path/to/map\"]\n");
 	else
-		printf("Error: too many arguments\n);
+		printf("Error: too many arguments\n");
 	return (0);
 }

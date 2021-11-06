@@ -20,7 +20,8 @@
 # include <string.h>
 # include <fcntl.h>
 # include <sys/errno.h>
-# include <mlx.h>
+//# include <mlx.h>
+# include "../mlx_linux/mlx.h"
 # include "../libft/libft.h"
 
 # define SCREEN_RES_H 640
