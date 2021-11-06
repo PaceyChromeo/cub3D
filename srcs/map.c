@@ -6,13 +6,13 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 13:12:37 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 17:04:01 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static t_map	*map_init(void)
+static t_map	*map_init(char *av)
 {
 	t_map	*map;
 
@@ -29,18 +29,23 @@ static t_map	*map_init(void)
 	if (!map->ceiling)
 		return (NULL);
 	ft_memset((int *)map->ceiling, 0, 3);
+	map->map_name = av;
 	return (map);
 }
 
-t_map	*get_map(int fd)
+t_map	*get_map(int fd, char *av)
 {
 	t_map	*map;
-
-	(void)fd;
-	map = map_init();
+	
+	map = map_init(av);
 	if (!map)
 		return (NULL);
 	if (get_textures(fd, map))
 		return (NULL);
+	if (get_colors(fd, map))
+		return (NULL);
+	if (get_tab(map))
+		return (NULL);
+	print_map(map);
 	return (map);
 }

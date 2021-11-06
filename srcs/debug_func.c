@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   debug_func.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/22 10:42:19 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 12:47:52 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/05 11:41:49 by hkrifa            #+#    #+#             */
+/*   Updated: 2021/11/05 11:43:09 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/cub3D.h"
 
-void	ft_bzero(void *s, size_t n)
+void	print_tab(char **tab)
 {
-	int		*str;
-	size_t	i;
+	int i;
 
 	i = 0;
-	str = (int *)s;
-	while (i++ < n)
-		*(str++) = 0;
+	while (tab[i])
+	{
+		printf("%s\n", tab[i]);
+		i++;
+	}
 }

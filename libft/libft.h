@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:38:19 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 13:24:33 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 11:59:50 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdio.h>
 # include <fcntl.h>
 
 # ifndef BUFFER_SIZE

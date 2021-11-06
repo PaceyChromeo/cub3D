@@ -6,11 +6,21 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/04 13:40:13 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/05 17:02:58 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
+static int	check_and_open_file(char *av, int *fd)
+{
+	if (check_file(av))
+			return (printf("Error: enter a valid map format :*.cub"));
+	*fd = open(av, O_RDONLY);
+	if (*fd == -1)
+		return (printf("%s\n", strerror(errno)));
+	return (0);
+}
 
 int main(int ac, char **av)
 {
@@ -19,14 +29,12 @@ int main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
-			return (printf("%s\n", strerror(errno)));
-		map = get_map(fd);
+		if (check_and_open_file(av[1], &fd))
+			return (-1);
+		map = get_map(fd, av[1]);
 		if (!map)
 			return (printf("Error: map not acquired\n"));
-		close(fd);
-		free_map(map);
+		free_and_close(map, fd);
 	}
 	else if (ac == 1)
 		printf("Error: usage: ./cub3D [\"path/to/map\"]\n");
