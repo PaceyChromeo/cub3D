@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 17:04:01 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 17:59:54 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_map	*get_map(int fd, char *av)
 		return (NULL);
 	if (get_tab(map))
 		return (NULL);
-	print_map(map);
+	if (check_valid_map(map))
+		return (NULL);
+	//print_map(map);
 	return (map);
 }

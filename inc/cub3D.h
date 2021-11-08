@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/06 22:57:04 by pacey            ###   ########.fr       */
+/*   Updated: 2021/11/08 17:55:25 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@
 # define SCREEN_RES_H 640
 # define SCREEN_RES_W 800
 
+typedef struct s_var
+{
+	int i;
+	int j;
+	int n;
+	int s;
+	int e;
+	int w;
+	
+}	t_var;
+
 typedef struct	s_map
 {
 	
@@ -37,6 +48,9 @@ typedef struct	s_map
 	int		*ceiling;
 	char	**tab;
 	char	*map_name;
+	t_var	*var;
+	int		pl_x;
+	int		pl_y;
 	int		line_length;
 	int		count_line;
 }				t_map;				
@@ -48,7 +62,8 @@ int		check_file(char *file);
 /************   MAP    *********/
 t_map	*get_map(int fd, char *av);
 /************   MAP ERRORS    *********/
-int		check_map_error(char **tab, t_map *map);
+int		check_valid_map(t_map *map);
+int		check_valid_walls(t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
 /************   TEXTURE    *********/

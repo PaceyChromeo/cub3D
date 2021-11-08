@@ -10,6 +10,7 @@ SRC = ${addprefix srcs/,	color.c \
 							free_stuffs.c \
 							main.c \
 							map.c \
+							map_errors_utils.c \
 							map_errors.c \
 							texture.c \
 							tab.c}
