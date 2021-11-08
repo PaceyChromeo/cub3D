@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stuffs.c                                      :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 12:54:20 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 16:20:41 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 15:05:09 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/08 17:12:41 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	free_tab(char **tab)
+int	img_loop(t_map *map)
 {
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
-void	free_and_close(t_map *map, int fd)
-{
-		free(map->floor);
-		free(map->ceiling);
-		if (map->tab)
-			free_tab(map->tab);
-		map->tab = NULL;
-		free(map);
-		free(map->minimap);
-		free(map->player);
-		if (fd)
-			close(fd);
+	ft_put_pixel(map->minimap, map->player->pos_x, map->player->pos_y, 0xff0000);
+	mlx_put_image_to_window(map->mlx_ptr, map->mlx_win, map->minimap->img_ptr, 0, 0);
+	return (0);
 }

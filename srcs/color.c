@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 13:38:13 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 16:47:45 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 12:29:51 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,22 @@ static int	put_color_in_map(char element, char **rgb, t_map *map, int *color)
 	{
 		i = -1;
 		while (++i < 3)
+		{
 			map->floor[i] = ft_atoi(rgb[i]);
+			if (map->floor[i] < 0 || map->floor[i] > 255)
+				return (printf("Error: floor color must be under 256\n"));
+		}
 		color[0]++;
 	}
 	else
 	{
 		i = -1;
 		while (++i < 3)
+		{
 			map->ceiling[i] = ft_atoi(rgb[i]);
+			if (map->ceiling[i] < 0 || map->ceiling[i] > 255)
+				return (printf("Error: ceiling color must be under 256\n"));
+		}
 		color[1]++;
 	}
 	return (0);

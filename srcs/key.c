@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stuffs.c                                      :+:      :+:    :+:   */
+/*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 12:54:20 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 16:20:41 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 15:55:14 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/08 17:00:32 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	free_tab(char **tab)
+void	deal_up_key(t_map *map)
 {
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	map->player->pos_y -= 10;
 }
 
-void	free_and_close(t_map *map, int fd)
+void	deal_left_key(t_map *map)
 {
-		free(map->floor);
-		free(map->ceiling);
-		if (map->tab)
-			free_tab(map->tab);
-		map->tab = NULL;
-		free(map);
-		free(map->minimap);
-		free(map->player);
-		if (fd)
-			close(fd);
+	map->player->pos_x -= 10;
+}
+
+void	deal_down_key(t_map *map)
+{
+	map->player->pos_y += 10;
+}
+
+void	deal_right_key(t_map *map)
+{
+	map->player->pos_x += 10;
 }

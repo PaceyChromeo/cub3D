@@ -8,11 +8,17 @@ SRC = ${addprefix srcs/,	color.c \
 							debug.c \
 							file.c \
 							free_stuffs.c \
+							key.c \
+							loop.c \
 							main.c \
 							map.c \
 							map_errors.c \
+							minimap.c \
+							mlx_hook.c \
+							player.c \
 							texture.c \
-							tab.c}
+							tab.c \
+							utils.c}
 
 OBJ = ${SRC:.c=.o}
 

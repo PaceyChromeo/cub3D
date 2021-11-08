@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 12:28:36 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/06 22:55:09 by pacey            ###   ########.fr       */
+/*   Updated: 2021/11/08 17:26:06 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ int	print_or_count_tab(char **tab, int poc)
 	i = 0;
 	if (poc)
 		printf("------------BEGIN OF TAB-------------\n");
-	while(tab[i])
+	while (tab[i])
 	{
 		if (poc)
 			printf("%s\n", tab[i]);
 		i++;
 	}
 	if (poc)
-	{
-		printf("------------  i : %d  -------------\n", i);
 		printf("------------END OF TAB-------------\n");
-	}
 	return (i);
 }
 
@@ -66,16 +63,6 @@ void	print_map(t_map *map)
 	if (map->tab)
 		print_or_count_tab(map->tab, 1);
 	printf("map_name : %s\n", map->map_name);
-}
-
-void	print_tab(char **tab)
-{
-	int i;
-
-	i = 0;
-	while (tab[i])
-	{
-		printf("%s\n", tab[i]);
-		i++;
-	}
+	printf("line_length : %d\n", map->line_length);
+	printf("count_line : %d\n", map->count_line);
 }

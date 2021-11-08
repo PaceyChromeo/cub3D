@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 16:54:53 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 17:05:22 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 17:15:33 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	get_tabnorm(char **tmp, t_map *map, char *line)
 	{
 		get_next_line(fd, &line);
 		tmp[i] = ft_strdup(line);
+		if (ft_strlen(tmp[i]) > (size_t)map->line_length)
+			map->line_length = ft_strlen(tmp[i]);
 		i++;
 		free(line);
 	}

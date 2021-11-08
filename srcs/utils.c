@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stuffs.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 12:54:20 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 16:20:41 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 16:21:17 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/08 16:21:43 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	free_tab(char **tab)
+void	ft_put_pixel(t_img *minimap, int x, int y, int color)
 {
-	int	i;
+	char	*dst;
 
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
-}
-
-void	free_and_close(t_map *map, int fd)
-{
-		free(map->floor);
-		free(map->ceiling);
-		if (map->tab)
-			free_tab(map->tab);
-		map->tab = NULL;
-		free(map);
-		free(map->minimap);
-		free(map->player);
-		if (fd)
-			close(fd);
+	dst = minimap->adr + (y * minimap->line_length + x * (minimap->bpp / 8));
+	*(unsigned int *)dst = color;
 }

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 17:02:58 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 16:45:13 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ static int	check_and_open_file(char *av, int *fd)
 	return (0);
 }
 
+static int launch_cub(t_map *map)
+{
+	map->mlx_ptr = mlx_init();
+	map->mlx_win = mlx_new_window(map->mlx_ptr, SCREEN_RES_W, SCREEN_RES_H, "cub3D");
+	map->minimap = get_minimap(map);
+	get_player(map);
+	mlx_hook(map->mlx_win, 2, 0, deal_keys, map);
+	mlx_hook(map->mlx_win, 17, 0, close_win, NULL);
+	mlx_loop_hook(map->mlx_ptr, img_loop, map);
+	mlx_loop(map->mlx_ptr);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	int		fd;
@@ -34,6 +47,7 @@ int main(int ac, char **av)
 		map = get_map(fd, av[1]);
 		if (!map)
 			return (printf("Error: map not acquired\n"));
+		launch_cub(map);
 		free_and_close(map, fd);
 	}
 	else if (ac == 1)

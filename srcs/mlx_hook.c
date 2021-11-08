@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_stuffs.c                                      :+:      :+:    :+:   */
+/*   mlx_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 12:54:20 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 16:20:41 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 10:54:31 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/08 15:54:46 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-void	free_tab(char **tab)
+int	close_win(void)
 {
-	int	i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	exit (0);
 }
 
-void	free_and_close(t_map *map, int fd)
+int	deal_keys(int keycode, t_map *map)
 {
-		free(map->floor);
-		free(map->ceiling);
-		if (map->tab)
-			free_tab(map->tab);
-		map->tab = NULL;
-		free(map);
-		free(map->minimap);
-		free(map->player);
-		if (fd)
-			close(fd);
+	if (keycode == ESC)
+		close_win();
+	if (keycode == W_KEY)
+		deal_up_key(map);
+	if (keycode == A_KEY)
+		deal_left_key(map);
+	if (keycode == S_KEY)
+		deal_down_key(map);
+	if (keycode == D_KEY)
+		deal_right_key(map);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 17:04:01 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 13:07:16 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ static t_map	*map_init(char *av)
 	t_map	*map;
 
 	map = (t_map *)ft_calloc(sizeof(*map), 1);
+	if (!map)
+		return (NULL);
+	map->mlx_ptr = NULL;
+	map->mlx_win = NULL;
 	map->north_text = NULL;
 	map->south_text = NULL;
 	map->west_text = NULL;
@@ -30,6 +34,8 @@ static t_map	*map_init(char *av)
 		return (NULL);
 	ft_memset((int *)map->ceiling, 0, 3);
 	map->map_name = av;
+	map->line_length = 0;
+	map->count_line = 0;
 	return (map);
 }
 
