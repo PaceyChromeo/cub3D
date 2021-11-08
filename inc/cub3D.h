@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 17:05:38 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 18:08:43 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,19 @@ typedef struct	s_img
 {
 	void	*img_ptr;
 	char	*adr;
-	int		line_length;
-	int		bpp;
-	int		endian;
-	int		line;
-	int		column;
 }				t_img;
+
+typedef struct	s_var
+{
+	int i;
+	int j;
+	int n;
+	int s;
+	int e;
+	int w;
+	
+}				t_var;
+
 
 typedef struct	s_player
 {
@@ -64,6 +71,7 @@ typedef struct	s_map
 	int			count_line;
 	int			pl_x;
 	int			pl_y;
+	t_var		*var;
 	t_img		*minimap;
 	t_player	*player;
 }				t_map;				
@@ -88,7 +96,8 @@ int		img_loop(t_map *map);
 /************   MAP    *********/
 t_map	*get_map(int fd, char *av);
 /************   MAP ERRORS    *********/
-int		check_map_error(char **tab, t_map *map);
+int		check_valid_map(t_map *map);
+int		check_valid_walls(t_map *map);
 /************   MINIMAP    *********/
 t_img	*get_minimap(t_map *map);
 /************   MLX_HOOK    *********/

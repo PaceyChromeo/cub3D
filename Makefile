@@ -12,6 +12,7 @@ SRC = ${addprefix srcs/,	color.c \
 							loop.c \
 							main.c \
 							map.c \
+							map_errors_utils.c \
 							map_errors.c \
 							minimap.c \
 							mlx_hook.c \
