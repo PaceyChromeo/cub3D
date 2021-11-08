@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 17:44:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 18:53:13 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,39 +19,48 @@ static t_img	*minimap_init(t_map *map)
 	minimap = ft_calloc(sizeof(t_img), 1);
 	if (!minimap)
 		return (NULL);
-	minimap->img_ptr = mlx_new_image(map->mlx_ptr, 800, 600);
+	minimap->img_ptr = mlx_new_image(map->mlx_ptr, 1200, 800);
 	minimap->adr = mlx_get_data_addr(minimap->img_ptr,
 					&minimap->bpp, &minimap->line_length, &minimap->endian);
-	minimap->line = 600 / map->count_line;
-	minimap->column = 800 / map->line_length;
+	minimap->line = 800 / map->count_line;
+	minimap->column = 1200 / map->line_length;
 	return (minimap);
 }
 
-static void	display_minimap(char **tab)
+static void	display_minimap(t_map *map)
 {
 	int	x;
 	int	y;
+	int	i;
+	int	j;
 
 	y = 0;
-	while (tab[y])
+	i = 0;
+	while (map->tab[i])
 	{
 		x = 0;
-		while (tab[y][x])
+		j = 0;
+		while (map->tab[i][j])
 		{
-			
-			x++;
+			if (map->tab[i][j] == ' ')
+				draw_square(map, x, y, 0x0);
+			else if (map->tab[i][j] == '1') 
+				draw_square(map, x, y, 0xff0000);
+			else if (map->tab[i][j] == '0') 
+				draw_square(map, x, y, 0x0000ff);
+			x += map->minimap->column;
+			j++;
 		}
-		y++;
+		y += map->minimap->line;
+		i++;
 	}
 }
 
-t_img	*get_minimap(t_map *map)
+int	get_minimap(t_map *map)
 {
-	t_img	*minimap;
-
-	minimap = minimap_init(map);
-	if (!minimap)
-		return (NULL);
-	display_minimap(map->tab);
-	return (minimap);
+	map->minimap = minimap_init(map);
+	if (!map->minimap)
+		return (1);
+	display_minimap(map);
+	return (0);
 }

@@ -6,6 +6,7 @@ FLAGS = -Wall -Werror -Wextra
 LIB_NAME = cub3D.a
 SRC = ${addprefix srcs/,	color.c \
 							debug.c \
+							draw.c \
 							file.c \
 							free_stuffs.c \
 							key.c \

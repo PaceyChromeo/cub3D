@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 18:08:43 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/08 18:41:05 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,14 @@ typedef struct	s_img
 {
 	void	*img_ptr;
 	char	*adr;
+	int		line_length;
+	int		bpp;
+	int		endian;
+	int		line;
+	int		column;
 }				t_img;
 
-typedef struct	s_var
+typedef struct s_var
 {
 	int i;
 	int j;
@@ -46,8 +51,7 @@ typedef struct	s_var
 	int e;
 	int w;
 	
-}				t_var;
-
+}	t_var;
 
 typedef struct	s_player
 {
@@ -81,6 +85,9 @@ int		get_colors(int fd, t_map *map);
 /************   DEBUG    *********/
 int		print_or_count_tab(char **tab, int poc);
 void	print_map(t_map *map);
+/************   DRAW    *********/
+int		print_or_count_tab(char **tab, int poc);
+void	draw_square(t_map *map, int x, int y, int color);
 /************   FILE    *********/
 int		check_file(char *file);
 /************   FREE_STUFFS    *********/
@@ -99,7 +106,7 @@ t_map	*get_map(int fd, char *av);
 int		check_valid_map(t_map *map);
 int		check_valid_walls(t_map *map);
 /************   MINIMAP    *********/
-t_img	*get_minimap(t_map *map);
+int		get_minimap(t_map *map);
 /************   MLX_HOOK    *********/
 int		close_win(void);
 int		deal_keys(int keycode, t_map *map);
