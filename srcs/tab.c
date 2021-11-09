@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/09 09:45:01 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 18:16:53 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,43 +80,64 @@ static char	**get_tab_tmp(t_map *map)
 	return (tmp);
 }
 
+char *get_line(char *line, int max)
+{
+	int i;
+	int j;
+	char *new;
+
+	i = 0;
+	j = ft_strlen(line);
+	new = malloc(sizeof(new) * max + 1);
+	while (line[i])
+	{
+		new[i] = line[i];
+		i++;
+	}
+	if (j < max)
+	{
+		while (i < max)
+		{
+			new[i] = ' ';
+			i++;
+		}
+	}
+	new[i] = '\0';
+	return (new);
+}
+
 int	get_tab(t_map *map)
 {
 	int i;
 	int j;
-	int k;
+	int index;
 	int count;
 	char **tmp;
 
 	i = 0;
 	j = 0;
-	k = 0;
-	count = 0;
+	index = 0;
 	tmp = get_tab_tmp(map);
 	while (tmp[i])
 	{
 		if (check_line(tmp[i]))
 		{
-			k = i;
+			index = i;
 			break ;
 		}
 		free(tmp[i]);
 		i++;
 	}
-	while (tmp[i])
-	{
-		count++;
-		i++;
-	}
+	count = count_lines(tmp, i);
 	map->tab = malloc(sizeof(map->tab) * count + 1);
-	while (tmp[k])
+	while (tmp[index])
 	{
-		map->tab[j] = ft_strdup(tmp[k]);
-		free(tmp[k]);
+		map->tab[j] = get_line(tmp[index], get_max(tmp, i));
+		free(tmp[index]);
 		j++;
-		k++;
-	}                                                                                                                                                                        
-	map->tab[j] = NULL;
+		index++;
+	}
+	map->tab[j] = NULL;                                                                                                                                                   
 	map->count_line = count;
 	free(tmp);
 	return (0);

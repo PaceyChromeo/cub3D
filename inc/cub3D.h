@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 15:20:11 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 18:16:41 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,8 @@ int		get_player(t_map *map);
 void	display_player(t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
+int		count_lines(char **tmp, int i);
+int		get_max(char **tmp, int i);
 /************   TEXTURE    *********/
 int		get_textures(int fd, t_map *map);
 /************   UTILS    *********/

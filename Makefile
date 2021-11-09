@@ -19,6 +19,7 @@ SRC = ${addprefix srcs/,	color.c \
 							mlx_hook.c \
 							player.c \
 							texture.c \
+							tab_utils.c \
 							tab.c \
 							utils.c}
 
