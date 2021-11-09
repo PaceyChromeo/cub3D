@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/08 18:36:45 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 09:45:01 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ static int check_line(char *line)
 		if (line[0] == '1' || line[0] == ' ')
 		{
 			i++;
-			if (line[i] == '1' || line[i] == ' ')
-				return (1);
+			if (line[i] != '1' && line[i] != ' ')
+				return (0);
+			while (line[i] == '1' || line[i] == ' ')
+			{
+				if (!line[i + 1])
+					return (1);
+				i++;
+			}
 		}
 		i++;
 	}
@@ -99,7 +105,7 @@ int	get_tab(t_map *map)
 	}
 	while (tmp[i])
 	{
-			count++;
+		count++;
 		i++;
 	}
 	map->tab = malloc(sizeof(map->tab) * count + 1);

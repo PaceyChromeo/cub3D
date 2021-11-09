@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:25:57 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/08 18:01:24 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/09 11:43:33 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int check_valid_spawn(t_map *map)
 			{
 				map->pl_x = i;
 				map->pl_y = j;
+				map->pl_view = map->tab[i][j];
 				count++;
 			}
 			j++;

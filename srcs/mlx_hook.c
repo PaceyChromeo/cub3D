@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:54:31 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 15:54:46 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 11:27:49 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,17 @@ int	deal_keys(int keycode, t_map *map)
 {
 	if (keycode == ESC)
 		close_win();
-	if (keycode == W_KEY)
+	else if (keycode == W_KEY)
 		deal_up_key(map);
-	if (keycode == A_KEY)
+	else if (keycode == A_KEY)
 		deal_left_key(map);
-	if (keycode == S_KEY)
+	else if (keycode == S_KEY)
 		deal_down_key(map);
-	if (keycode == D_KEY)
+	else if (keycode == D_KEY)
 		deal_right_key(map);
+	else if (keycode == L_KEY)
+		deal_left_arrow(map);
+	else if (keycode == R_KEY)
+		deal_right_arrow(map);
 	return (0);
 }

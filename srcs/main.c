@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 18:40:50 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 11:20:28 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_and_open_file(char *av, int *fd)
 static int launch_cub(t_map *map)
 {
 	map->mlx_ptr = mlx_init();
-	map->mlx_win = mlx_new_window(map->mlx_ptr, SCREEN_RES_W, SCREEN_RES_H, "cub3D");
+	map->mlx_win = mlx_new_window(map->mlx_ptr, SCREEN_W, SCREEN_H, "cub3D");
 	get_minimap(map);
 	get_player(map);
 	mlx_hook(map->mlx_win, 2, 0, deal_keys, map);

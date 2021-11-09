@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 18:53:13 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/09 15:22:28 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 static t_img	*minimap_init(t_map *map)
 {
 	t_img	*minimap;
-	
+
 	minimap = ft_calloc(sizeof(t_img), 1);
 	if (!minimap)
 		return (NULL);
-	minimap->img_ptr = mlx_new_image(map->mlx_ptr, 1200, 800);
+	minimap->img_ptr = mlx_new_image(map->mlx_ptr, SCREEN_W, SCREEN_H);
 	minimap->adr = mlx_get_data_addr(minimap->img_ptr,
 					&minimap->bpp, &minimap->line_length, &minimap->endian);
-	minimap->line = 800 / map->count_line;
-	minimap->column = 1200 / map->line_length;
+	minimap->line = (double)(SCREEN_H) / map->count_line;
+	minimap->column = (double)(SCREEN_W) / map->line_length;
 	return (minimap);
 }
 
-static void	display_minimap(t_map *map)
+void	display_minimap(t_map *map)
 {
 	int	x;
 	int	y;
@@ -43,11 +43,12 @@ static void	display_minimap(t_map *map)
 		while (map->tab[i][j])
 		{
 			if (map->tab[i][j] == ' ')
-				draw_square(map, x, y, 0x0);
+				draw_square(map, x, y, BLACK);
 			else if (map->tab[i][j] == '1') 
-				draw_square(map, x, y, 0xff0000);
-			else if (map->tab[i][j] == '0') 
-				draw_square(map, x, y, 0x0000ff);
+				draw_square(map, x, y, TEAL);
+			else if (map->tab[i][j] == '0' || map->tab[i][j] == 'S' || map->tab[i][j] == 'N'
+				|| map->tab[i][j] == 'E' || map->tab[i][j] == 'W') 
+				draw_square(map, x, y, LIGHT_CYAN);
 			x += map->minimap->column;
 			j++;
 		}
