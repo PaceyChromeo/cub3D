@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/09 18:16:53 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/10 17:09:28 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,14 +130,15 @@ int	get_tab(t_map *map)
 	}
 	count = count_lines(tmp, i);
 	map->tab = malloc(sizeof(map->tab) * count + 1);
+	map->max_len = get_max(tmp, i);
 	while (tmp[index])
 	{
-		map->tab[j] = get_line(tmp[index], get_max(tmp, i));
+		map->tab[j] = get_line(tmp[index], map->max_len);
 		free(tmp[index]);
 		j++;
 		index++;
 	}
-	map->tab[j] = NULL;                                                                                                                                                   
+	map->tab[j] = NULL;                                                                                                                                          
 	map->count_line = count;
 	free(tmp);
 	return (0);
