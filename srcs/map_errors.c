@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_errors.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:25:57 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/09 11:43:33 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/10 18:18:57 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static int check_valid_bottom(t_map *map)
 int	check_valid_map(t_map *map)
 {
 	if (check_valid_spawn(map))
-		return (printf("Error : to few/many characters.\n"));
+		return (printf("Error : to few/many players.\n"));
 	if (check_valid_char(map))
 		return (printf("Error : bad character.\n"));
 	if (check_valid_top(map))
@@ -106,5 +106,7 @@ int	check_valid_map(t_map *map)
 		return (printf("Error : The map is not surrounded by walls.\n"));
 	if (check_valid_walls(map))
 		return (printf("Error : The map is not surrounded by walls.\n"));
+	if (check_valid_spaces(map))
+		return (printf("Error : Invalid character(s) around spaces.\n"));
 	return (0);
 }

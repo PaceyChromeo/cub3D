@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:55:14 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 09:30:25 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 09:33:11 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	deal_up_key(t_map *map)
 
 void	deal_left_key(t_map *map)
 {
-	map->player->angle += PI;
+	map->player->angle += PI / 2;
 	map->player->delta_x = cos(map->player->angle) * 10;
 	map->player->delta_y = sin(map->player->angle) * 10;
 }
@@ -34,7 +34,7 @@ void	deal_down_key(t_map *map)
 
 void	deal_right_key(t_map *map)
 {
-	map->player->angle -= PI;
+	map->player->angle -= PI / 2;
 	map->player->delta_x = cos(map->player->angle) * 10;
 	map->player->delta_y = sin(map->player->angle) * 10;
 }

@@ -12,13 +12,15 @@ SRC = ${addprefix srcs/,	color.c \
 							key.c \
 							loop.c \
 							main.c \
-							map.c \
 							map_errors_utils.c \
 							map_errors.c \
+							map_spaces.c \
+							map.c \
 							minimap.c \
 							mlx_hook.c \
 							player.c \
 							texture.c \
+							tab_utils.c \
 							tab.c \
 							utils.c}
 

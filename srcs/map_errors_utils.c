@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 14:40:56 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/08 15:37:19 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/09 18:13:15 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ static int	pos_2(char *str)
 
 static int valid_walls(char *str, int pos1, int pos2)
 {
-	(void)pos2;
 	if (pos1 != 0)
 	{
 		if (str[pos1 - 1] != ' ')
 			return (1);
 	}
-	
+	if (pos2 != 0)
+	{
+		if (str[pos2 + 1] != '\0' && str[pos2 + 1] != ' ')
+			return (1);
+	}
 	return (0);
 }
 
@@ -57,7 +60,7 @@ int check_valid_walls(t_map *map)
 	int i;
 	int pos1;
 	int pos2;
-	
+
 	i = 1;
 	while (i < map->count_line - 1)
 	{

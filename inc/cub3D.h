@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 09:09:56 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 09:31:22 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct	s_map
 	char		**tab;
 	char		*map_name;
 	int			line_length;
+	int			max_len;
 	int			count_line;
 	int			pl_x;
 	int			pl_y;
@@ -137,6 +138,7 @@ t_map	*get_map(int fd, char *av);
 /************   MAP ERRORS    *********/
 int		check_valid_map(t_map *map);
 int		check_valid_walls(t_map *map);
+int 	check_valid_spaces(t_map *map);
 /************   MINIMAP    *********/
 int		get_minimap(t_map *map);
 void	display_minimap(t_map *map);
@@ -148,6 +150,8 @@ int		get_player(t_map *map);
 void	display_player(t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
+int		count_lines(char **tmp, int i);
+int		get_max(char **tmp, int i);
 /************   TEXTURE    *********/
 int		get_textures(int fd, t_map *map);
 /************   UTILS    *********/
