@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 15:20:11 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 09:09:56 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	draw_player(t_map *map, double x, double y, int color);
 void	draw_line(t_map *map, double x, double y, int color);
 /************   FILE    *********/
 int		check_file(char *file);
+int		check_texture_file(char *file);
 /************   FREE_STUFFS    *********/
 void	free_tab(char **tab);
 void	free_and_close(t_map *map, int fd);
