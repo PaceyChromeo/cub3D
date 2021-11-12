@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 12:38:25 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 17:22:58 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,63 +19,135 @@ static t_raycast	*init_raycasting(void)
 	raycast = ft_calloc(sizeof(t_raycast), 1);
 	if (!raycast)
 		return (NULL);
-	raycast->mx = 0;	
-	raycast->my = 0;	
-	raycast->mp = 0;	
-	raycast->rx = 0;	
-	raycast->ry = 0;	
 	raycast->ra = 0;	
-	raycast->xo = 0;	
-	raycast->yo = 0;
+	raycast->coord_x = 0;	
+	raycast->coord_y = 0;	
 	return (raycast);
 }
 
 static void	check_horizontal_line(t_map *map, t_raycast *raycast)
 {
-	int	dof;
-	double	aTan;
+	double	next_x;
+	double	next_y;
 
-	dof = 0;
-	aTan = -1 / tan(raycast->ra);
-	if (raycast->ra > PI)
+	next_x = 0.0;
+	next_y = 0.0;
+	if (raycast->ra < PI) // looking down
 	{
-		raycast->ry = (((int)map->player->pos_y >> 6) << 6) - 0.0001;
-		raycast->rx = (map->player->pos_y - raycast->ry) * aTan + map->player->pos_x;
-		raycast->yo -= map->minimap->square;
-		raycast->xo -= raycast->yo * aTan; 
+		printf("DOWN\n");
+ 		printf("angle : %f\n", convert_radian_to_degre(raycast->ra));
+ 		printf("pos_x : %f pos_y : %f\n", map->player->pos_x, map->player->pos_y);
+ 		printf("tan : %f\n", tan(raycast->ra));
+		next_y = floor(map->player->pos_y / map->minimap->square) * (map->minimap->square) + map->minimap->square;
+		next_x = map->player->pos_x - ((map->player->pos_y - next_y) / tan(raycast->ra));
+ 		printf("next_x : %f : next_y : %f\n", next_x, next_y);
+		raycast->coord_x = next_x / map->minimap->square;
+		raycast->coord_y = next_y / map->minimap->square;
+		printf("horizontal before down - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+		// while (map->tab[raycast->coord_y][raycast->coord_x]
+		// 	&& map->tab[raycast->coord_y][raycast->coord_x] != '1')
+		// {
+		// 	printf("horizontal while down - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+ 		// 	printf("while next_x : %f : next_y : %f\n", next_x, next_y);
+		// 	next_x += map->minimap->square / tan(raycast->ra);
+		// 	next_y += map->minimap->square;
+		// 	raycast->coord_x = next_x / map->minimap->square;
+		// 	raycast->coord_y = next_y / map->minimap->square;
+		// }
+		if (map->tab[raycast->coord_y][raycast->coord_x] == '1')
+			printf("horizontal end down - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
 	}
-	if (raycast->ra < PI)
+	else if (raycast->ra > PI) // looking up
 	{
-		raycast->ry = (((int)map->player->pos_y >> 6) << 6) + map->minimap->square;
-		raycast->rx = (map->player->pos_y - raycast->ry) * aTan + map->player->pos_x;
-		raycast->yo -= map->minimap->square;
-		raycast->xo -= raycast->yo * aTan; 
+		printf("UP\n");
+ 		printf("angle : %f\n", convert_radian_to_degre(raycast->ra));
+ 		printf("pos_x : %f pos_y : %f\n", map->player->pos_x, map->player->pos_y);
+ 		printf("tan : %f\n", tan(raycast->ra));
+		next_y = floor(map->player->pos_y / map->minimap->square) * map->minimap->square - 1;
+		next_x = map->player->pos_x - ((map->player->pos_y - next_y) / tan(raycast->ra));
+ 		printf("next_x : %f : next_y : %f\n", next_x, next_y);
+		raycast->coord_x = next_x / map->minimap->square;
+		raycast->coord_y = next_y / map->minimap->square;
+		printf("horizontal before up - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+		// while (map->tab[raycast->coord_y][raycast->coord_x]
+		// 	&& map->tab[raycast->coord_y][raycast->coord_x] != '1')
+		// {
+		// 	printf("horizontal while up - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+		// 	next_x += map->minimap->square / tan(raycast->ra);
+		// 	next_y -= map->minimap->square;
+		// 	raycast->coord_x = next_x / map->minimap->square;
+		// 	raycast->coord_y = next_y / map->minimap->square;
+		// }
+		if (map->tab[raycast->coord_y][raycast->coord_x] == '1')
+			printf("horizontal end up - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
 	}
-	if (raycast->ra == 0 || raycast->ra == PI)
-	{
-		raycast->rx = map->player->pos_x;
-		raycast->ry = map->player->pos_y;
-		dof = 8;
-	}
-	while (dof < 8)
-	{
-		
-	}
+	draw_line(map, next_x, next_y, WHITE);
 }
+
+// static void	check_vertical_line(t_map *map, t_raycast *raycast)
+// {
+// 	double	next_x;
+// 	double	next_y;
+
+// 	if (raycast->ra == 90 || raycast->ra == 270)
+// 		return ;
+// 	else if (raycast->ra > 90 && raycast->ra < 270) // looking left
+// 	{
+// 		printf("angle : %f\n", raycast->ra);
+// 		printf("pos_Y : %f pos_X : %f\n", map->player->pos_y, map->player->pos_x);
+// 		next_x = floor(map->player->pos_x / map->minimap->square) * map->minimap->square - 1;
+// 		next_y = map->player->pos_y + (map->player->pos_x - next_x) * tan(raycast->ra);
+// 		printf("1 - next_x : %f : next_y : %f\n", next_x, next_y);
+// 		raycast->coord_x = next_x / map->minimap->square;
+// 		raycast->coord_y = next_y / map->minimap->square;
+// 		printf("2 - next_x : %d : next_y : %d\n", (int)next_x, (int)next_y);
+// 		printf("vertical before left - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 		while (map->tab[raycast->coord_y][raycast->coord_x]
+// 			&& map->tab[raycast->coord_y][raycast->coord_x] != '1')
+// 		{
+// 			printf("vertical while left - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 			next_x -= map->minimap->square;
+// 			next_y += map->minimap->square / tan(raycast->ra);
+// 			raycast->coord_x = next_x / map->minimap->square;
+// 			raycast->coord_y = next_y / map->minimap->square;
+// 		}
+// 		if (map->tab[raycast->coord_y][raycast->coord_x] == '1')
+// 			printf("vertical end left - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 	}
+// 	else if ((raycast->ra > 270 && raycast->ra < 360) || (raycast->ra > 0 && raycast->ra < 90)) // looking right
+// 	{
+// 		printf("angle : %f\n", raycast->ra);
+// 		printf("pos_Y : %f pos_X : %f\n", map->player->pos_y, map->player->pos_x);
+// 		next_x = floor(map->player->pos_x / map->minimap->square) * map->minimap->square + map->minimap->square;
+// 		next_y = map->player->pos_y + (map->player->pos_x - next_x) * tan(raycast->ra);
+// 		printf("1 - next_x : %f : next_y : %f\n", next_x, next_y);
+// 		raycast->coord_x = next_x / map->minimap->square;
+// 		raycast->coord_y = next_y / map->minimap->square;
+// 		printf("2 - next_x : %d : next_y : %d\n", (int)next_x, (int)next_y);
+// 		printf("vertical before right - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 		while (map->tab[raycast->coord_y][raycast->coord_x]
+// 			&& map->tab[raycast->coord_y][raycast->coord_x] != '1')
+// 		{
+// 			printf("vertical while right - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 			next_x += map->minimap->square;
+// 			next_y += map->minimap->square / tan(raycast->ra);
+// 			raycast->coord_x = next_x / map->minimap->square;
+// 			raycast->coord_y = next_y / map->minimap->square;
+// 		}
+// 		if (map->tab[raycast->coord_y][raycast->coord_x] == '1')
+// 			printf("vertical end right - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
+// 	}
+// }
 
 void	raycasting(t_map *map)
 {
 	t_raycast	*raycast;
-	int			r;
 
-	r = 0;
 	raycast = init_raycasting();
 	if (!raycast)
 		return ;
 	raycast->ra = map->player->angle;
-	while (r < 1)
-	{
+	if (raycast->ra != 0 && raycast->ra != PI)
 		check_horizontal_line(map, raycast);
-		r++;	
-	}
+	//check_vertical_line(map, raycast);
 }

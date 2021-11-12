@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 12:00:54 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 17:04:49 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	get_player_position(t_map *map)
 			if (map->tab[y][x] == 'S' || map->tab[y][x] == 'N'
 				|| map->tab[y][x] == 'W' || map->tab[y][x] == 'E')
 			{
-				map->player->pos_x = x * map->minimap->square;			
-				map->player->pos_y = y * map->minimap->square;
+				map->player->pos_x = x * map->minimap->square + map->minimap->square / 2;			
+				map->player->pos_y = y * map->minimap->square + map->minimap->square / 2;
 				return (0);
 			}
 			x++;
@@ -39,9 +39,9 @@ static int	get_player_position(t_map *map)
 
 static int	get_player_angle(t_map *map)
 {
-	if (map->pl_view == 'S')
+	if (map->pl_view == 'N')
 		map->player->angle = PI + (PI / 2);
-	else if (map->pl_view == 'N')
+	else if (map->pl_view == 'S')
 		map->player->angle = PI / 2;
 	else if (map->pl_view == 'W')
 		map->player->angle = PI;
@@ -54,13 +54,8 @@ static int	get_player_angle(t_map *map)
 
 void	display_player(t_map *map)
 {
-	double	x;
-	double	y;
-
-	x = map->player->pos_x + (map->minimap->square / 2);
-	y = map->player->pos_y + (map->minimap->square / 2);
-	draw_player(map, x, y, SILVER);
-	draw_line(map, x, y, PURPLE);
+	draw_player(map, map->player->pos_x , map->player->pos_y , SILVER);
+	draw_player_line(map, map->player->pos_x , map->player->pos_y , PURPLE);
 }
 
 int	get_player(t_map *map)

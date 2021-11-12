@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 15:55:14 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 11:32:03 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 110:1010:14 by pjacob            #+#    #+#             */
+/*   Updated: 2021/11/12 12:08:46 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	deal_left_key(t_map *map)
 	double	x;
 	double	y;
 
-	x = cosf(map->player->angle - (PI / 2)) * 10;
-	y = sinf(map->player->angle - (PI / 2)) * 10;
+	x = cos(map->player->angle - (PI / 2)) * 10;
+	y = sin(map->player->angle - (PI / 2)) * 10;
 	map->player->pos_x += x;
 	map->player->pos_y += y;
 }
@@ -40,7 +40,7 @@ void	deal_right_key(t_map *map)
 	double	x;
 	double	y;
 
-	x = cosf(map->player->angle + (PI / 2)) * 10;
+	x = cos(map->player->angle + (PI / 2)) * 10;
 	y = sinf(map->player->angle + (PI / 2)) * 10;
 	map->player->pos_x += x;
 	map->player->pos_y += y;

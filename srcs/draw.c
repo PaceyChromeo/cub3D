@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:44:11 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 12:46:59 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 17:07:02 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,21 @@ void	draw_grid(t_map *map)
 		while (x < SCREEN_W)
 		{
 			ft_put_pixel(map->minimap, x, y, BLACK);
-			x += map->minimap->square;
+			x++;;
 		}
 		y += map->minimap->square;
 	}
-	
+	y = 0;
+	while (y < SCREEN_H)
+	{
+		x = 0;
+		while (x < SCREEN_W)
+		{
+			ft_put_pixel(map->minimap, x, y, BLACK);
+			x += map->minimap->square;
+		}
+		y++;
+	}
 }
 
 void	draw_square(t_map *map, int x, int y, int color)
@@ -75,7 +85,7 @@ void	draw_player(t_map *map, double x, double y, int color)
 	}
 }
 
-void	draw_line(t_map *map, double x, double y, int color)
+void	draw_player_line(t_map *map, double x, double y, int color)
 {
 	int		step;
 	double	incX;
@@ -94,6 +104,35 @@ void	draw_line(t_map *map, double x, double y, int color)
 		ft_put_pixel(map->minimap, x, y, color);
 		x += incX;
 		y += incY;
+		i++;
+	}
+}
+
+void	draw_line(t_map *map, double x, double y, int color)
+{
+	int		step;
+	double	x0;
+	double	y0;
+	double	dX;
+	double	dY;
+	int		i;
+
+	dX = x - map->player->pos_x;
+	dY = y - map->player->pos_y;
+	if (dX >= dY)
+		step = dX;
+	else
+		step = dY;
+	dX /= (double)step;
+	dY /= (double)step;
+	i = 0;
+	x0 = map->player->pos_x;
+	y0 = map->player->pos_y;
+	while (i <= step)
+	{
+		ft_put_pixel(map->minimap, x0, y0, color);
+		x0 += dX;
+		y0 += dY;
 		i++;
 	}
 }

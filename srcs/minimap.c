@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 12:43:57 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 16:59:54 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	display_minimap(t_map *map)
 		y += map->minimap->square;
 		i++;
 	}
+	draw_grid(map);
 }
 
 int	get_minimap(t_map *map)
@@ -66,7 +67,6 @@ int	get_minimap(t_map *map)
 	map->minimap = minimap_init(map);
 	if (!map->minimap)
 		return (1);
-	draw_grid(map);
 	display_minimap(map);
 	return (0);
 }

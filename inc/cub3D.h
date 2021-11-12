@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 12:48:36 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 15:18:15 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,12 @@
 # define FUCHSIA 0xFF00FF
 # define DARK_BLUE 0x3e6358
 # define LIGHT_CYAN 0x6eccc4
-# define PLAYER_SPAWN 0xFFF000
-# define LINES_COLORS 0x647573
-# define RAY_CAST_COLOR	0x007397
 
 typedef struct	s_raycast
 {
-	int		mx;
-	int		my;
-	int		mp;
-	double	rx;
-	double	ry;
 	double	ra;
-	double	xo;
-	double	yo;
+	int		coord_x;
+	int		coord_y;
 }				t_raycast;
 
 
@@ -77,7 +69,7 @@ typedef struct	s_img
 	int		endian;
 	double	line;
 	double	column;
-	int		square;
+	double		square;
 }				t_img;
 
 typedef struct s_var
@@ -132,6 +124,7 @@ void	print_map(t_map *map);
 void	draw_square(t_map *map, int x, int y, int color);
 void	draw_grid(t_map *map);
 void	draw_player(t_map *map, double x, double y, int color);
+void	draw_player_line(t_map *map, double x, double y, int color);
 void	draw_line(t_map *map, double x, double y, int color);
 /************   FILE    *********/
 int		check_file(char *file);
