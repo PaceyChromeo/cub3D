@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 17:22:58 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/12 17:35:10 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	check_horizontal_line(t_map *map, t_raycast *raycast)
 		// {
 		// 	printf("horizontal while down - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
  		// 	printf("while next_x : %f : next_y : %f\n", next_x, next_y);
-		// 	next_x += map->minimap->square / tan(raycast->ra);
+		// 	next_x -= (map->minimap->square / tan(raycast->ra));
 		// 	next_y += map->minimap->square;
 		// 	raycast->coord_x = next_x / map->minimap->square;
 		// 	raycast->coord_y = next_y / map->minimap->square;
@@ -73,7 +73,7 @@ static void	check_horizontal_line(t_map *map, t_raycast *raycast)
 		// 	&& map->tab[raycast->coord_y][raycast->coord_x] != '1')
 		// {
 		// 	printf("horizontal while up - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
-		// 	next_x += map->minimap->square / tan(raycast->ra);
+		// 	next_x -= (map->minimap->square / tan(raycast->ra));
 		// 	next_y -= map->minimap->square;
 		// 	raycast->coord_x = next_x / map->minimap->square;
 		// 	raycast->coord_y = next_y / map->minimap->square;
@@ -81,6 +81,10 @@ static void	check_horizontal_line(t_map *map, t_raycast *raycast)
 		if (map->tab[raycast->coord_y][raycast->coord_x] == '1')
 			printf("horizontal end up - map[%d][%d]\n", raycast->coord_y, raycast->coord_x);
 	}
+	if (next_x < 0)
+		next_x = 0;
+	else if (next_x > SCREEN_H)
+		next_x = SCREEN_W;
 	draw_line(map, next_x, next_y, WHITE);
 }
 
