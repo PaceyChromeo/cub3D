@@ -6,11 +6,30 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:44:11 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 15:20:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 12:46:59 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
+void	draw_grid(t_map *map)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < SCREEN_H)
+	{
+		x = 0;
+		while (x < SCREEN_W)
+		{
+			ft_put_pixel(map->minimap, x, y, BLACK);
+			x += map->minimap->square;
+		}
+		y += map->minimap->square;
+	}
+	
+}
 
 void	draw_square(t_map *map, int x, int y, int color)
 {
@@ -18,8 +37,8 @@ void	draw_square(t_map *map, int x, int y, int color)
 	int	width;
 	int	i;
 
-	heigth = y + map->minimap->line;
-	width = x + map->minimap->column;
+	heigth = y + map->minimap->square;
+	width = x + map->minimap->square;
 	while (y < heigth)
 	{
 		i = x;	
@@ -40,14 +59,14 @@ void	draw_player(t_map *map, double x, double y, int color)
 	int	end_y;
 	int	i;
 
-	start_x = (int)x - (map->minimap->column / 10);
-	start_y = (int)y - (map->minimap->line / 10);
-	end_x = (int)x + (map->minimap->column / 10);
-	end_y = (int)y + (map->minimap->line / 10);
-	while (start_y < end_y)
+	start_x = (int)x - (map->minimap->square / 10);
+	start_y = (int)y - (map->minimap->square / 10);
+	end_x = (int)x + (map->minimap->square / 10);
+	end_y = (int)y + (map->minimap->square / 10);
+	while (start_y <= end_y)
 	{
 		i = start_x;	
-		while (i < end_x)
+		while (i <= end_x)
 		{
 			ft_put_pixel(map->minimap, i, start_y, color);
 			i++;

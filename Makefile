@@ -19,6 +19,7 @@ SRC = ${addprefix srcs/,	color.c \
 							minimap.c \
 							mlx_hook.c \
 							player.c \
+							raycasting.c \
 							texture.c \
 							tab_utils.c \
 							tab.c \

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 12:59:12 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 09:24:30 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 09:45:34 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	put_texture_in_map(char *texture, char *file, t_map *map, int *text)
 {
+	//printf("Texture : %s\n", texture);
+	//printf("to recup : %s\n", file);
 	if (!ft_strncmp(texture, "NO", 2))
 	{
 		map->north_text = ft_strdup(file);
@@ -41,6 +43,7 @@ static int	get_texture(char *line, t_map *map, int *text)
 	char	**split;
 
 	split = ft_split(line, ' ');
+	print_or_count_tab(split, 1);
 	if (print_or_count_tab(split, 0) > 2)
 		return (printf("Error: too many file for %s texture\n", split[0]));
 	else if (print_or_count_tab(split, 0) == 1)
@@ -48,14 +51,7 @@ static int	get_texture(char *line, t_map *map, int *text)
 	else
 	{
 		put_texture_in_map(split[0], split[1], map, text);
-		printf("east : %s\n", map->east_text);
-		printf("west : %s\n", map->west_text);
-		printf("north : %s\n", map->south_text);
-		printf("south : %s\n", map->north_text);
-		if (check_texture_file(map->east_text)
-			|| check_texture_file(map->west_text)
-			|| check_texture_file(map->south_text)
-			|| check_texture_file(map->north_text))
+		if (check_texture_file(split[1]))
 			return (1);
 	}
 	free_tab(split);

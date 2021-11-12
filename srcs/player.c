@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 15:24:43 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 12:00:54 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	get_player_position(t_map *map)
 			if (map->tab[y][x] == 'S' || map->tab[y][x] == 'N'
 				|| map->tab[y][x] == 'W' || map->tab[y][x] == 'E')
 			{
-				map->player->pos_x = x * map->minimap->column;			
-				map->player->pos_y = y * map->minimap->line;
+				map->player->pos_x = x * map->minimap->square;			
+				map->player->pos_y = y * map->minimap->square;
 				return (0);
 			}
 			x++;
@@ -57,8 +57,8 @@ void	display_player(t_map *map)
 	double	x;
 	double	y;
 
-	x = map->player->pos_x + (map->minimap->column / 2);
-	y = map->player->pos_y + (map->minimap->line / 2);
+	x = map->player->pos_x + (map->minimap->square / 2);
+	y = map->player->pos_y + (map->minimap->square / 2);
 	draw_player(map, x, y, SILVER);
 	draw_line(map, x, y, PURPLE);
 }

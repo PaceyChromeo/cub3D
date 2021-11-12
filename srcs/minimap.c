@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 15:22:28 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 12:43:57 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static t_img	*minimap_init(t_map *map)
 					&minimap->bpp, &minimap->line_length, &minimap->endian);
 	minimap->line = (double)(SCREEN_H) / map->count_line;
 	minimap->column = (double)(SCREEN_W) / map->line_length;
+	if (minimap->line > minimap->column)
+		minimap->square = floor(minimap->column);
+	else
+		minimap->square = floor(minimap->line);
 	return (minimap);
 }
 
@@ -49,10 +53,10 @@ void	display_minimap(t_map *map)
 			else if (map->tab[i][j] == '0' || map->tab[i][j] == 'S' || map->tab[i][j] == 'N'
 				|| map->tab[i][j] == 'E' || map->tab[i][j] == 'W') 
 				draw_square(map, x, y, LIGHT_CYAN);
-			x += map->minimap->column;
+			x += map->minimap->square;
 			j++;
 		}
-		y += map->minimap->line;
+		y += map->minimap->square;
 		i++;
 	}
 }
@@ -62,6 +66,7 @@ int	get_minimap(t_map *map)
 	map->minimap = minimap_init(map);
 	if (!map->minimap)
 		return (1);
+	draw_grid(map);
 	display_minimap(map);
 	return (0);
 }

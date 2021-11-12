@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 09:31:22 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 12:48:36 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,19 @@
 # define LINES_COLORS 0x647573
 # define RAY_CAST_COLOR	0x007397
 
+typedef struct	s_raycast
+{
+	int		mx;
+	int		my;
+	int		mp;
+	double	rx;
+	double	ry;
+	double	ra;
+	double	xo;
+	double	yo;
+}				t_raycast;
+
+
 typedef struct	s_img
 {
 	void	*img_ptr;
@@ -64,6 +77,7 @@ typedef struct	s_img
 	int		endian;
 	double	line;
 	double	column;
+	int		square;
 }				t_img;
 
 typedef struct s_var
@@ -116,6 +130,7 @@ int		print_or_count_tab(char **tab, int poc);
 void	print_map(t_map *map);
 /************   DRAW    *********/
 void	draw_square(t_map *map, int x, int y, int color);
+void	draw_grid(t_map *map);
 void	draw_player(t_map *map, double x, double y, int color);
 void	draw_line(t_map *map, double x, double y, int color);
 /************   FILE    *********/
@@ -148,6 +163,8 @@ int		deal_keys(int keycode, t_map *map);
 /************   PLAYER    *********/
 int		get_player(t_map *map);
 void	display_player(t_map *map);
+/************   RAYCASTING    *********/
+void	raycasting(t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
 int		count_lines(char **tmp, int i);
@@ -156,6 +173,8 @@ int		get_max(char **tmp, int i);
 int		get_textures(int fd, t_map *map);
 /************   UTILS    *********/
 void	ft_put_pixel(t_img *minimap, int x, int y, int color);
+double	convert_degre_to_radian(double degre);
+double	convert_radian_to_degre(double radian);
 
 
 #endif

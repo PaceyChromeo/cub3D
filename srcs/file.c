@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:46:49 by pacey             #+#    #+#             */
-/*   Updated: 2021/11/11 09:23:28 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 09:50:18 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,22 @@ int	check_texture_file(char *file)
 	int	i;
 
 	i = 0;
-	printf("file : %s\n", file);
-	if (!file[i] || file[i] == '.')
-		return (printf("Error: enter a valid texture format :*.xpm"));
-	printf("OK\n");
+	if (!file || !file[i] || file[i] == '.')
+		return (printf("Error: enter a valid texture format :*.xpm\n"));
 	while (file[i] && file[i] != '.')
 		i++;
 	if (file[i++] != '.')
-		return (printf("Error: enter a valid textutr format :*.xpm"));
+		return (printf("Error: enter a valid texture format :*.xpm\n"));
 	else
 	{
 		if (file[i++] != 'x')
-			return (printf("Error: enter a valid textutr format :*.xpm"));
+			return (printf("Error: enter a valid texture format :*.xpm\n"));
 		if (file[i++] != 'p')
-			return (printf("Error: enter a valid textutr format :*.xpm"));
+			return (printf("Error: enter a valid texture format :*.xpm\n"));
 		if (file[i++] != 'm')
-			return (printf("Error: enter a valid textutr format :*.xpm"));
+			return (printf("Error: enter a valid texture format :*.xpm\n"));
 		if (file[i])
-			return (printf("Error: enter a valid textutr format :*.xpm"));
+			return (printf("Error: enter a valid texture format :*.xpm\n"));
 	}
 	return (0);	
 }

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 15:55:14 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/11 09:33:11 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/11 11:32:03 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@ void	deal_up_key(t_map *map)
 {
 	map->player->pos_x += map->player->delta_x;
 	map->player->pos_y += map->player->delta_y;
-	
 }
 
 void	deal_left_key(t_map *map)
 {
-	map->player->angle += PI / 2;
-	map->player->delta_x = cos(map->player->angle) * 10;
-	map->player->delta_y = sin(map->player->angle) * 10;
+	double	x;
+	double	y;
+
+	x = cosf(map->player->angle - (PI / 2)) * 10;
+	y = sinf(map->player->angle - (PI / 2)) * 10;
+	map->player->pos_x += x;
+	map->player->pos_y += y;
 }
 
 void	deal_down_key(t_map *map)
@@ -34,9 +37,13 @@ void	deal_down_key(t_map *map)
 
 void	deal_right_key(t_map *map)
 {
-	map->player->angle -= PI / 2;
-	map->player->delta_x = cos(map->player->angle) * 10;
-	map->player->delta_y = sin(map->player->angle) * 10;
+	double	x;
+	double	y;
+
+	x = cosf(map->player->angle + (PI / 2)) * 10;
+	y = sinf(map->player->angle + (PI / 2)) * 10;
+	map->player->pos_x += x;
+	map->player->pos_y += y;
 }
 
 void	deal_left_arrow(t_map *map)
@@ -44,8 +51,8 @@ void	deal_left_arrow(t_map *map)
 	map->player->angle -= 0.1;
 	if (map->player->angle < 0)
 		map->player->angle += 2 * PI;
-	map->player->delta_x = cos(map->player->angle) * 10;
-	map->player->delta_y = sin(map->player->angle) * 10;
+	map->player->delta_x = cosf(map->player->angle) * 10;
+	map->player->delta_y = sinf(map->player->angle) * 10;
 }
 
 void	deal_right_arrow(t_map *map)
@@ -53,6 +60,6 @@ void	deal_right_arrow(t_map *map)
 	map->player->angle += 0.1;
 	if (map->player->angle > 2 * PI)
 		map->player->angle -= 2 * PI;
-	map->player->delta_x = cos(map->player->angle) * 10;
-	map->player->delta_y = sin(map->player->angle) * 10;
+	map->player->delta_x = cosf(map->player->angle) * 10;
+	map->player->delta_y = sinf(map->player->angle) * 10;
 }
