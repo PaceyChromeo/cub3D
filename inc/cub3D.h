@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 15:18:15 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/13 14:55:59 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@
 typedef struct	s_raycast
 {
 	double	ra;
+	double	rx;
+	double	ry;
 	int		coord_x;
 	int		coord_y;
 }				t_raycast;
@@ -113,6 +115,7 @@ typedef struct	s_map
 	t_var		*var;
 	t_img		*minimap;
 	t_player	*player;
+	t_raycast	*raycast;
 }				t_map;				
 
 /************   COLOR    *********/
@@ -155,8 +158,9 @@ int		close_win(void);
 int		deal_keys(int keycode, t_map *map);
 /************   PLAYER    *********/
 int		get_player(t_map *map);
-void	display_player(t_map *map);
 /************   RAYCASTING    *********/
+void	keep_closest_point(t_raycast *raycast, double next_x, double next_y);
+void	draw_rays(t_map *map);
 void	raycasting(t_map *map);
 /************   TAB    *********/
 int		get_tab(t_map *map);
@@ -168,6 +172,7 @@ int		get_textures(int fd, t_map *map);
 void	ft_put_pixel(t_img *minimap, int x, int y, int color);
 double	convert_degre_to_radian(double degre);
 double	convert_radian_to_degre(double radian);
-
+/************   WALL    *********/
+void	check_walls(t_map *map, t_raycast *raycast);
 
 #endif

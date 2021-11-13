@@ -23,7 +23,8 @@ SRC = ${addprefix srcs/,	color.c \
 							texture.c \
 							tab_utils.c \
 							tab.c \
-							utils.c}
+							utils.c \
+							wall.c}
 
 OBJ = ${SRC:.c=.o}
 

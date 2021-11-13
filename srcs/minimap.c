@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 16:59:54 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/13 15:14:17 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	display_minimap(t_map *map)
 				draw_square(map, x, y, TEAL);
 			else if (map->tab[i][j] == '0' || map->tab[i][j] == 'S' || map->tab[i][j] == 'N'
 				|| map->tab[i][j] == 'E' || map->tab[i][j] == 'W') 
-				draw_square(map, x, y, LIGHT_CYAN);
+				draw_square(map, x, y, SILVER);
 			x += map->minimap->square;
 			j++;
 		}

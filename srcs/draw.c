@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:44:11 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 17:07:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/13 15:11:55 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,10 +119,10 @@ void	draw_line(t_map *map, double x, double y, int color)
 
 	dX = x - map->player->pos_x;
 	dY = y - map->player->pos_y;
-	if (dX >= dY)
-		step = dX;
+	if (fabs(dX) >= fabs(dY))
+		step = fabs(dX);
 	else
-		step = dY;
+		step = fabs(dY);
 	dX /= (double)step;
 	dY /= (double)step;
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/09 17:39:55 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/13 14:55:01 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_map	*map_init(char *av)
 	map->map_name = av;
 	map->line_length = 0;
 	map->count_line = 0;
+	map->raycast = NULL;
 	return (map);
 }
 

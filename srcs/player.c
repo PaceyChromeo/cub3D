@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 17:04:49 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/13 10:00:59 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,11 @@ static int	get_player_angle(t_map *map)
 	return (0);
 }
 
-void	display_player(t_map *map)
-{
-	draw_player(map, map->player->pos_x , map->player->pos_y , SILVER);
-	draw_player_line(map, map->player->pos_x , map->player->pos_y , PURPLE);
-}
-
 int	get_player(t_map *map)
 {
 	map->player = ft_calloc(sizeof(*map->player), 1);
 	get_player_position(map);
 	get_player_angle(map);
-	display_player(map);
+	draw_player(map, map->player->pos_x , map->player->pos_y , SILVER);
 	return (0);
 }
