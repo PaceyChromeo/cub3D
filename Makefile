@@ -5,6 +5,7 @@ INC = inc/cub3d.h \
 FLAGS = -Wall -Werror -Wextra
 LIB_NAME = cub3D.a
 SRC = ${addprefix srcs/,	color.c \
+							convert_rgb.c \
 							cub.c \
 							debug.c \
 							draw.c \

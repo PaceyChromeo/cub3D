@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:47:48 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 15:28:36 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 19:56:54 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_img	*cub_init(t_map *map)
 		return (NULL);
 	cub->img_ptr = mlx_new_image(map->mlx_ptr, SCREEN_W, SCREEN_H);
 	cub->adr = mlx_get_data_addr(cub->img_ptr, &cub->bpp, &cub->line_length, &cub->endian);
+	cub->fl = convert_rgb_floor(map);
+	cub->ceil = convert_rgb_ceiling(map);
 	return (cub);
 }
 
@@ -37,7 +39,7 @@ static void	draw_floor(t_img *cub, double half_wall, int i)
 	}
 	while (j < 400)
 	{
-		ft_put_pixel(cub, i, j, BLACK);
+		ft_put_pixel(cub, i, j, cub->ceil);
 		j++;
 	}
 }
@@ -51,7 +53,7 @@ static void	draw_ceiling(t_img *cub, double half_wall, int i)
 	ceiling = 200 - half_wall;
 	while (j < ceiling)
 	{
-		ft_put_pixel(cub, i, j, BLACK);
+		ft_put_pixel(cub, i, j, cub->fl);
 		j++;
 	}
 	while (j < 200)

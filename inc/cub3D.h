@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 15:22:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 19:32:49 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,10 @@ typedef struct	s_img
 	int		bpp;
 	int		endian;
 	double	line;
-	double	column;
+	double		column;
 	double		square;
+	unsigned int fl;
+	unsigned int ceil;
 }				t_img;
 
 typedef struct	s_player
@@ -112,6 +114,8 @@ typedef struct	s_map
 
 /************   COLOR    *********/
 int		get_colors(int fd, t_map *map);
+unsigned int	convert_rgb_floor(t_map *map);
+unsigned int	convert_rgb_ceiling(t_map *map);
 /************   CUB    *********/
 t_img	*cub_init(t_map *map);
 /************   DEBUG    *********/
@@ -143,6 +147,7 @@ int		img_loop(t_map *map);
 /************   MAP    *********/
 t_map	*get_map(int fd, char *av);
 /************   MAP ERRORS    *********/
+char	*get_line(char *line, int max);
 int		check_valid_map(t_map *map);
 int		check_valid_walls(t_map *map);
 int 	check_valid_spaces(t_map *map);
@@ -159,7 +164,8 @@ void	keep_closest_point(t_raycast *raycast, double next_x, double next_y);
 void	draw_rays(t_map *map);
 void	raycasting(t_map *map);
 /************   TAB    *********/
-int		get_tab(t_map *map);
+int		get_tab(t_map *map, int j, int index, int ok);
+void	get_tabnorm2(t_map *map, char **tmp, int index, int j);
 int		count_lines(char **tmp, int i);
 int		get_max(char **tmp, int i);
 /************   TEXTURE    *********/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 15:23:25 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 20:09:10 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	draw_rays(t_map *map)
 		map->raycast->ra = ray;
 		check_walls(map, map->raycast);
 		draw_line(map, map->raycast->rx, map->raycast->ry, WHITE);
+		//display_minimap(map, 0, 0);
 		draw_walls(map, i);
 		ray += convert_degre_to_radian(0.1);
 		if (ray > 2 * PI)

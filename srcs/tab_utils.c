@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:14:51 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 11:32:59 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 16:57:17 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
+
+void	get_tabnorm2(t_map *map, char **tmp, int index, int j)
+{
+	while (tmp[index])
+	{
+		map->tab[j] = get_line(tmp[index], map->max_len);
+		free(tmp[index]);
+		j++;
+		index++;
+	}
+	map->tab[j] = NULL;
+}
 
 int	count_lines(char **tmp, int i)
 {

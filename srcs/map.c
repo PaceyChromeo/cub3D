@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 15:18:40 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 19:34:32 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_map	*get_map(int fd, char *av)
 		return (NULL);
 	if (get_colors(fd, map))
 		return (NULL);
-	if (get_tab(map))
+	if (get_tab(map, 0, 0, 0))
 		return (NULL);
 	if (check_valid_map(map))
 		return (NULL);
