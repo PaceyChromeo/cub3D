@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:02:49 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 16:04:18 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 10:16:37 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,19 @@ static void	check_vertical_looking_left(t_map *map,
 	next_x = floor(map->player->pos_x / map->minimap->square)
 		* (map->minimap->square) - 1;
 	next_y = map->player->pos_y - ((map->player->pos_x - next_x)
-			* tan(raycast->ra));
+		* tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
-	// while (map->tab[raycast->coord_y][raycast->coord_x]
-	// 	&& map->tab[raycast->coord_y][raycast->coord_x] == '0'
-	// 	&& next_y > 0
-	// 	&& next_y < map->count_line * map->minimap->square
-	// 	&& next_x > 0)
-	// {
-	// 	printf("{VL} next_x [%f] next_y [%f]\n", next_x, next_y);
-	// 	printf("{VL} map->tab[%d][%d]\n", raycast->coord_x, raycast->coord_y);
-	// 	next_y -= (map->minimap->square * tan(raycast->ra));
-	// 	next_x -= map->minimap->square;
-	// 	raycast->coord_x = next_x / map->minimap->square;
-	// 	raycast->coord_y = next_y / map->minimap->square;
-	// }
+	while (next_x > 0 && next_y > 0
+		&& next_x < map->line_length * map->minimap->square
+		&& next_y < map->count_line * map->minimap->square
+		&& map->tab[raycast->coord_y][raycast->coord_x] == '0')
+	{
+		next_y -= (map->minimap->square * tan(raycast->ra));
+		next_x -= map->minimap->square;
+		raycast->coord_x = next_x / map->minimap->square;
+		raycast->coord_y = next_y / map->minimap->square;
+	}
 	keep_closest_point(raycast, next_x, next_y);
 }
 
@@ -91,22 +88,19 @@ static void	check_vertical_looking_right(t_map *map,
 	next_x = floor(map->player->pos_x / map->minimap->square)
 		* (map->minimap->square) + map->minimap->square;
 	next_y = map->player->pos_y - ((map->player->pos_x - next_x)
-			* tan(raycast->ra));
+		* tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
-	// while (map->tab[raycast->coord_y][raycast->coord_x]
-	// 	&& map->tab[raycast->coord_y][raycast->coord_x] == '0'
-	// 	&& next_y > 0
-	// 	&& next_y < map->count_line * map->minimap->square
-	// 	&& next_x < map->line_length * map->minimap->square)
-	// {
-	// 	printf("{VR} next_x [%f] next_y [%f]\n", next_x, next_y);
-	// 	printf("{VR} map->tab[%d][%d]\n", raycast->coord_x, raycast->coord_y);
-	// 	next_y += (map->minimap->square * tan(raycast->ra));
-	// 	next_x += map->minimap->square;
-	// 	raycast->coord_x = next_x / map->minimap->square;
-	// 	raycast->coord_y = next_y / map->minimap->square;
-	// }
+	while (next_x > 0 && next_y > 0
+		&& next_x < map->line_length * map->minimap->square
+		&& next_y < map->count_line * map->minimap->square
+		&& map->tab[raycast->coord_y][raycast->coord_x] == '0')
+	{
+		next_y += (map->minimap->square * tan(raycast->ra));
+		next_x += map->minimap->square;
+		raycast->coord_x = next_x / map->minimap->square;
+		raycast->coord_y = next_y / map->minimap->square;
+	}
 	keep_closest_point(raycast, next_x, next_y);
 }
 

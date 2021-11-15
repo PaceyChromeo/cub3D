@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:44:11 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 15:11:55 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 10:22:39 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	draw_line(t_map *map, double x, double y, int color)
 	i = 0;
 	x0 = map->player->pos_x;
 	y0 = map->player->pos_y;
-	while (i <= step)
+	while (i < step)
 	{
 		ft_put_pixel(map->minimap, x0, y0, color);
 		x0 += dX;

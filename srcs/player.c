@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 10:00:59 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 09:52:52 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	get_player_position(t_map *map)
 			{
 				map->player->pos_x = x * map->minimap->square + map->minimap->square / 2;			
 				map->player->pos_y = y * map->minimap->square + map->minimap->square / 2;
+				map->tab[y][x] = '0';
 				return (0);
 			}
 			x++;
