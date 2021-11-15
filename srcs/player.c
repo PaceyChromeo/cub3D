@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 09:52:52 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:29:35 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ static int	get_player_position(t_map *map)
 			if (map->tab[y][x] == 'S' || map->tab[y][x] == 'N'
 				|| map->tab[y][x] == 'W' || map->tab[y][x] == 'E')
 			{
-				map->player->pos_x = x * map->minimap->square + map->minimap->square / 2;			
-				map->player->pos_y = y * map->minimap->square + map->minimap->square / 2;
+				map->player->pos_x
+					= x * map->minimap->square + map->minimap->square / 2;
+				map->player->pos_y
+					= y * map->minimap->square + map->minimap->square / 2;
 				map->tab[y][x] = '0';
 				return (0);
 			}
@@ -58,6 +60,6 @@ int	get_player(t_map *map)
 	map->player = ft_calloc(sizeof(*map->player), 1);
 	get_player_position(map);
 	get_player_angle(map);
-	draw_player(map, map->player->pos_x , map->player->pos_y , SILVER);
+	draw_player(map, map->player->pos_x, map->player->pos_y, SILVER);
 	return (0);
 }

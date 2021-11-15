@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   tab_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:14:51 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/10 17:08:09 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:32:59 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-int count_lines(char **tmp, int i)
+int	count_lines(char **tmp, int i)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (tmp[i] != NULL)
@@ -25,10 +25,10 @@ int count_lines(char **tmp, int i)
 	return (count);
 }
 
-int get_max(char **tmp, int i)
+int	get_max(char **tmp, int i)
 {
-	int max;
-	
+	int	max;
+
 	max = 0;
 	while (tmp[i])
 	{

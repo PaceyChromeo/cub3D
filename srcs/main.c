@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 13:50:12 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 12:20:02 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 static int	check_and_open_file(char *av, int *fd)
 {
 	if (check_file(av))
-			return (printf("Error: enter a valid map format :*.cub"));
+		return (printf("Error: enter a valid map format :*.cub"));
 	*fd = open(av, O_RDONLY);
 	if (*fd == -1)
 		return (printf("%s\n", strerror(errno)));
 	return (0);
 }
 
-static int launch_cub(t_map *map)
+static int	launch_cub(t_map *map)
 {
 	map->mlx_ptr = mlx_init();
 	map->mlx_win = mlx_new_window(map->mlx_ptr, SCREEN_W, SCREEN_H, "cub3D");
@@ -36,7 +36,7 @@ static int launch_cub(t_map *map)
 	return (0);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	int		fd;
 	t_map	*map;

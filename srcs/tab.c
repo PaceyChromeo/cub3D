@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   tab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/10 17:09:28 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:32:03 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static int check_line(char *line)
+static int	check_line(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (line[i])
 	{
@@ -38,10 +38,10 @@ static int check_line(char *line)
 
 static void	get_tabnorm(char **tmp, t_map *map)
 {
-	int	i;
-	int	fd;
-	char *line;
-	
+	int		i;
+	int		fd;
+	char	*line;
+
 	i = 0;
 	fd = open(map->map_name, O_RDONLY);
 	while (i < map->count_line)
@@ -80,11 +80,11 @@ static char	**get_tab_tmp(t_map *map)
 	return (tmp);
 }
 
-char *get_line(char *line, int max)
+char	*get_line(char *line, int max)
 {
-	int i;
-	int j;
-	char *new;
+	int		i;
+	int		j;
+	char	*new;
 
 	i = 0;
 	j = ft_strlen(line);
@@ -108,11 +108,11 @@ char *get_line(char *line, int max)
 
 int	get_tab(t_map *map)
 {
-	int i;
-	int j;
-	int index;
-	int count;
-	char **tmp;
+	int		i;
+	int		j;
+	int		index;
+	int		count;
+	char	**tmp;
 
 	i = 0;
 	j = 0;
@@ -138,7 +138,7 @@ int	get_tab(t_map *map)
 		j++;
 		index++;
 	}
-	map->tab[j] = NULL;                                                                                                                                          
+	map->tab[j] = NULL;
 	map->count_line = count;
 	free(tmp);
 	return (0);

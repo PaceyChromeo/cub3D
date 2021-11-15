@@ -6,19 +6,14 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 11:05:40 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 14:55:01 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 15:18:40 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static t_map	*map_init(char *av)
+static t_map	*map_init(t_map *map, char *av)
 {
-	t_map	*map;
-
-	map = (t_map *)ft_calloc(sizeof(*map), 1);
-	if (!map)
-		return (NULL);
 	map->mlx_ptr = NULL;
 	map->mlx_win = NULL;
 	map->north_text = NULL;
@@ -36,15 +31,22 @@ static t_map	*map_init(char *av)
 	map->map_name = av;
 	map->line_length = 0;
 	map->count_line = 0;
+	map->i = 0;
+	map->minimap = NULL;
+	map->player = NULL;
 	map->raycast = NULL;
+	map->cub = NULL;
 	return (map);
 }
 
 t_map	*get_map(int fd, char *av)
 {
 	t_map	*map;
-	
-	map = map_init(av);
+
+	map = (t_map *)(ft_calloc(sizeof(*map), 1));
+	if (!map)
+		return (NULL);
+	map_init(map, av);
 	if (!map)
 		return (NULL);
 	if (get_textures(fd, map))

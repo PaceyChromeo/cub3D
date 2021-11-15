@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 13:38:13 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 12:29:51 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:11:07 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,28 +43,26 @@ static int	check_rgb(char **rgb, int i, char element, size_t x)
 
 static int	put_color_in_map(char element, char **rgb, t_map *map, int *color)
 {
-	int	i;
-
 	if (check_rgb(rgb, 0, element, 0))
-			return (1);
+		return (1);
 	if (element == 'F')
 	{
-		i = -1;
-		while (++i < 3)
+		map->i = -1;
+		while (++map->i < 3)
 		{
-			map->floor[i] = ft_atoi(rgb[i]);
-			if (map->floor[i] < 0 || map->floor[i] > 255)
+			map->floor[map->i] = ft_atoi(rgb[map->i]);
+			if (map->floor[map->i] < 0 || map->floor[map->i] > 255)
 				return (printf("Error: floor color must be under 256\n"));
 		}
 		color[0]++;
 	}
 	else
 	{
-		i = -1;
-		while (++i < 3)
+		map->i = -1;
+		while (++map->i < 3)
 		{
-			map->ceiling[i] = ft_atoi(rgb[i]);
-			if (map->ceiling[i] < 0 || map->ceiling[i] > 255)
+			map->ceiling[map->i] = ft_atoi(rgb[map->i]);
+			if (map->ceiling[map->i] < 0 || map->ceiling[map->i] > 255)
 				return (printf("Error: ceiling color must be under 256\n"));
 		}
 		color[1]++;
@@ -84,7 +82,7 @@ static int	get_color(char *line, t_map *map, int *color)
 	i = 1;
 	while (line[++i])
 		trim[i - 2] = line[i];
-	trim[i - 2]= '\0';
+	trim[i - 2] = '\0';
 	split = ft_split(trim, ',');
 	if (print_or_count_tab(split, 0) > 3)
 		return (printf("Error: too many color for %c\n", line[0]));
@@ -118,7 +116,7 @@ static int	count_color(int *color)
 			if (i == 0)
 				return (printf("Error: too many F color: Usage 1\n"));
 			else
-				return (printf("Error: too many C color: Usage 1\n"));	
+				return (printf("Error: too many C color: Usage 1\n"));
 		}
 		i++;
 	}

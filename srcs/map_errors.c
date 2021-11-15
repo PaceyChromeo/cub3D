@@ -6,46 +6,45 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 15:25:57 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 09:52:33 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:21:52 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3D.h"
 
-static int check_valid_spawn(t_map *map)
+static int	check_valid_spawn(t_map *map)
 {
-	int i;
-	int j;
-	int count;
+	int	j;
+	int	count;
 
-	i = 0;
+	map->i = 0;
 	count = 0;
-	while (map->tab[i])
+	while (map->tab[map->i])
 	{
 		j = 0;
-		while(map->tab[i][j])
+		while (map->tab[map->i][j])
 		{
-			if (map->tab[i][j] == 'N' || map->tab[i][j] == 'S' 
-				|| map->tab[i][j] == 'E' || map->tab[i][j] == 'W')
+			if (map->tab[map->i][j] == 'N' || map->tab[map->i][j] == 'S'
+				|| map->tab[map->i][j] == 'E' || map->tab[map->i][j] == 'W')
 			{
-				map->pl_x = i;
+				map->pl_x = map->i;
 				map->pl_y = j;
-				map->pl_view = map->tab[i][j];
+				map->pl_view = map->tab[map->i][j];
 				count++;
 			}
 			j++;
 		}
-		i++;
+		map->i++;
 	}
 	if (count != 1)
 		return (1);
 	return (0);
 }
 
-static int check_valid_char(t_map *map)
+static int	check_valid_char(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (map->tab[i])
@@ -53,11 +52,12 @@ static int check_valid_char(t_map *map)
 		j = 0;
 		while (map->tab[i][j])
 		{
-			if (map->tab[i][j] != ' ' && map->tab[i][j] != '1' && map->tab[i][j] != '0' 
-				&& map->tab[i][j] != 'N' && map->tab[i][j] != 'S' 
+			if (map->tab[i][j] != ' ' && map->tab[i][j] != '1'
+				&& map->tab[i][j] != '0'
+				&& map->tab[i][j] != 'N' && map->tab[i][j] != 'S'
 				&& map->tab[i][j] != 'E' && map->tab[i][j] != 'W')
-				return(1);
-			j++;	
+				return (1);
+			j++;
 		}
 		i++;
 	}
@@ -66,22 +66,22 @@ static int check_valid_char(t_map *map)
 
 static int	check_valid_top(t_map *map)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (map->tab[0][j])
 	{
 		if (map->tab[0][j] != '1' && map->tab[0][j] != ' ')
-			return(1);
+			return (1);
 		j++;
 	}
 	return (0);
 }
 
-static int check_valid_bottom(t_map *map)
+static int	check_valid_bottom(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	i = map->count_line - 1;

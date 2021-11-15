@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 110:1010:14 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/12 12:08:46 by pjacob           ###   ########.fr       */
+/*   Created: 2021/11/08 11:10:10 by by pjacob         #+#    #+#             */
+/*   Updated: 2021/11/15 13:49:53 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,23 @@ void	deal_up_key(t_map *map)
 {
 	double	x;
 	double	y;
+	int		cx;
+	int		cy;
 
 	x = map->player->pos_x + map->player->delta_x;
 	y = map->player->pos_y + map->player->delta_y;
 	if (x > 0 && y > 0
 		&& x < map->line_length * map->minimap->square
-		&& y < map->count_line * map->minimap->square)
+		&& y < (map->count_line * map->minimap->square)
+		- map->minimap->square)
 	{
-		map->player->pos_x = x;
-		map->player->pos_y = y;
+		cx = (int)(x / map->minimap->square);
+		cy = (int)(y / map->minimap->square);
+		if (map->tab[cy][cx] && map->tab[cy][cx] == '0')
+		{
+			map->player->pos_x = x;
+			map->player->pos_y = y;
+		}
 	}
 }
 
@@ -32,6 +40,8 @@ void	deal_left_key(t_map *map)
 {
 	double	x;
 	double	y;
+	int		cx;
+	int		cy;
 
 	x = cos(map->player->angle - (PI / 2)) * 10;
 	y = sin(map->player->angle - (PI / 2)) * 10;
@@ -39,10 +49,16 @@ void	deal_left_key(t_map *map)
 	y += map->player->pos_y;
 	if (x > 0 && y > 0
 		&& x < map->line_length * map->minimap->square
-		&& y < map->count_line * map->minimap->square)	
+		&& y < (map->count_line * map->minimap->square)
+		- map->minimap->square)
 	{
-		map->player->pos_x = x;
-		map->player->pos_y = y;
+		cx = (int)(x / map->minimap->square);
+		cy = (int)(y / map->minimap->square);
+		if (map->tab[cy][cx] && map->tab[cy][cx] == '0')
+		{
+			map->player->pos_x = x;
+			map->player->pos_y = y;
+		}
 	}
 }
 
@@ -50,15 +66,23 @@ void	deal_down_key(t_map *map)
 {
 	double	x;
 	double	y;
+	int		cx;
+	int		cy;
 
 	x = map->player->pos_x - map->player->delta_x;
 	y = map->player->pos_y - map->player->delta_y;
 	if (x > 0 && y > 0
 		&& x < map->line_length * map->minimap->square
-		&& y < map->count_line * map->minimap->square)
+		&& y < (map->count_line * map->minimap->square)
+		- map->minimap->square)
 	{
-		map->player->pos_x = x;
-		map->player->pos_y = y;
+		cx = (int)(x / map->minimap->square);
+		cy = (int)(y / map->minimap->square);
+		if (map->tab[cy][cx] && map->tab[cy][cx] == '0')
+		{
+			map->player->pos_x = x;
+			map->player->pos_y = y;
+		}
 	}
 }
 
@@ -66,6 +90,8 @@ void	deal_right_key(t_map *map)
 {
 	double	x;
 	double	y;
+	int		cx;
+	int		cy;
 
 	x = cos(map->player->angle + (PI / 2)) * 10;
 	y = sinf(map->player->angle + (PI / 2)) * 10;
@@ -73,27 +99,15 @@ void	deal_right_key(t_map *map)
 	y += map->player->pos_y;
 	if (x > 0 && y > 0
 		&& x < map->line_length * map->minimap->square
-		&& y < map->count_line * map->minimap->square)
+		&& y < (map->count_line * map->minimap->square)
+		- map->minimap->square)
 	{
-		map->player->pos_x = x;
-		map->player->pos_y = y;
+		cx = (int)(x / map->minimap->square);
+		cy = (int)(y / map->minimap->square);
+		if (map->tab[cy][cx] && map->tab[cy][cx] == '0')
+		{
+			map->player->pos_x = x;
+			map->player->pos_y = y;
+		}
 	}
-}
-
-void	deal_left_arrow(t_map *map)
-{
-	map->player->angle -= 0.1;
-	if (map->player->angle < 0)
-		map->player->angle += 2 * PI;
-	map->player->delta_x = cosf(map->player->angle) * 10;
-	map->player->delta_y = sinf(map->player->angle) * 10;
-}
-
-void	deal_right_arrow(t_map *map)
-{
-	map->player->angle += 0.1;
-	if (map->player->angle > 2 * PI)
-		map->player->angle -= 2 * PI;
-	map->player->delta_x = cosf(map->player->angle) * 10;
-	map->player->delta_y = sinf(map->player->angle) * 10;
 }

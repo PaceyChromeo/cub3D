@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 12:28:36 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/08 17:26:06 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:12:16 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	print_map(t_map *map)
 	{
 		printf("%d ", map->floor[i]);
 		if (i < 2)
-		printf("| ");
+			printf("| ");
 		if (i == 2)
-		printf("\n");
+			printf("\n");
 		i++;
 	}
 	printf("ceiling : ");
@@ -55,9 +55,9 @@ void	print_map(t_map *map)
 	{
 		printf("%d ", map->ceiling[i]);
 		if (i < 2)
-		printf("| ");
+			printf("| ");
 		if (i == 2)
-		printf("\n");
+			printf("\n");
 		i++;
 	}
 	if (map->tab)

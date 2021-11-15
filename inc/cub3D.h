@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/13 14:55:59 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 15:22:02 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
-# define SCREEN_H 800
-# define SCREEN_W 1200
+# define SCREEN_H 400
+# define SCREEN_W 640
 # define ESC 53
 # define W_KEY 13
 # define A_KEY 0
@@ -74,17 +74,6 @@ typedef struct	s_img
 	double		square;
 }				t_img;
 
-typedef struct s_var
-{
-	int i;
-	int j;
-	int n;
-	int s;
-	int e;
-	int w;
-	
-}	t_var;
-
 typedef struct	s_player
 {
 	double	pos_x;
@@ -112,14 +101,19 @@ typedef struct	s_map
 	int			pl_x;
 	int			pl_y;
 	char		pl_view;
-	t_var		*var;
+	int			i;
+	double		dist;
+	double		dpp;
 	t_img		*minimap;
 	t_player	*player;
 	t_raycast	*raycast;
+	t_img		*cub;
 }				t_map;				
 
 /************   COLOR    *********/
 int		get_colors(int fd, t_map *map);
+/************   CUB    *********/
+t_img	*cub_init(t_map *map);
 /************   DEBUG    *********/
 int		print_or_count_tab(char **tab, int poc);
 void	print_map(t_map *map);
@@ -129,6 +123,8 @@ void	draw_grid(t_map *map);
 void	draw_player(t_map *map, double x, double y, int color);
 void	draw_player_line(t_map *map, double x, double y, int color);
 void	draw_line(t_map *map, double x, double y, int color);
+/************   DISTANCE   *********/
+void	draw_walls(t_map *map, int i);
 /************   FILE    *********/
 int		check_file(char *file);
 int		check_texture_file(char *file);
@@ -152,7 +148,7 @@ int		check_valid_walls(t_map *map);
 int 	check_valid_spaces(t_map *map);
 /************   MINIMAP    *********/
 int		get_minimap(t_map *map);
-void	display_minimap(t_map *map);
+void	display_minimap(t_map *map, int i, int y);
 /************   MLX_HOOK    *********/
 int		close_win(void);
 int		deal_keys(int keycode, t_map *map);
@@ -172,6 +168,7 @@ int		get_textures(int fd, t_map *map);
 void	ft_put_pixel(t_img *minimap, int x, int y, int color);
 double	convert_degre_to_radian(double degre);
 double	convert_radian_to_degre(double radian);
+double	square_dble(double nb);
 /************   WALL    *********/
 void	check_walls(t_map *map, t_raycast *raycast);
 

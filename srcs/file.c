@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:46:49 by pacey             #+#    #+#             */
-/*   Updated: 2021/11/11 09:50:18 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 11:13:37 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ int	check_texture_file(char *file)
 		if (file[i])
 			return (printf("Error: enter a valid texture format :*.xpm\n"));
 	}
-	return (0);	
+	return (0);
 }
