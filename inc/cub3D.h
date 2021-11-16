@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/11/16 14:01:37 by hkrifa           ###   ########.fr       */
+=======
+/*   Updated: 2021/11/16 14:52:35 by pjacob           ###   ########.fr       */
+>>>>>>> ea778636d54e71d9335a707fce518dd14c281dfc
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +64,8 @@ typedef struct	s_raycast
 	double	ry;
 	int		coord_x;
 	int		coord_y;
+	int		ray_dir;
+	int		vertical;
 }				t_raycast;
 
 
