@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:47:48 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 19:56:54 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 10:24:56 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void	draw_floor(t_img *cub, double half_wall, int i)
 	x = j;
 	while (j < x + half_wall)
 	{
-		ft_put_pixel(cub, i, j, RED);
+		ft_put_pixel(cub, i, j, BLACK);
 		j++;
 	}
 	while (j < 400)
 	{
-		ft_put_pixel(cub, i, j, cub->ceil);
+		ft_put_pixel(cub, i, j, cub->fl);
 		j++;
 	}
 }
@@ -53,12 +53,12 @@ static void	draw_ceiling(t_img *cub, double half_wall, int i)
 	ceiling = 200 - half_wall;
 	while (j < ceiling)
 	{
-		ft_put_pixel(cub, i, j, cub->fl);
+		ft_put_pixel(cub, i, j, cub->ceil);
 		j++;
 	}
 	while (j < 200)
 	{
-		ft_put_pixel(cub, i, j, RED);
+		ft_put_pixel(cub, i, j, BLACK);
 		j++;
 	}
 }
@@ -80,8 +80,8 @@ static double	distance_to_wall(t_map *map)
 
 void	draw_walls(t_map *map, int i)
 {
-	double	wall_height;
 	int		j;
+	double	wall_height;
 
 	wall_height = distance_to_wall(map) / 2;
 	if (wall_height > 0 && wall_height <= 200)
