@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 12:32:13 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 14:22:29 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	keep_closest_point(t_raycast *raycast, double next_x, double next_y)
 	}
 	else if (raycast->ra >= PI && raycast->ra < (PI + (PI / 2)))
 	{
+		
 		if ((next_x > raycast->rx && next_y > raycast->ry) || raycast->ra == PI)
 			replace_closest_point(raycast, next_x, next_y);
 	}

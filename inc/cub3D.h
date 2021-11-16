@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 12:13:53 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 14:01:37 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct	s_img
 	double			line;
 	double			column;
 	double			square;
+	int				width;
+	int				height;
 	unsigned int	fl;
 	unsigned int	ceil;
 }				t_img;

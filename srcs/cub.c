@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:47:48 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 12:21:55 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 15:07:05 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_img	*cub_init(t_map *map)
 	if (!cub)
 		return (NULL);
 	cub->img_ptr = mlx_new_image(map->mlx_ptr, SCREEN_W, SCREEN_H);
+	cub->height = SCREEN_H;
+	cub->width = SCREEN_W;
 	cub->adr = mlx_get_data_addr(cub->img_ptr, &cub->bpp, &cub->line_length, &cub->endian);
 	cub->fl = convert_rgb_floor(map);
 	cub->ceil = convert_rgb_ceiling(map);
@@ -82,8 +84,9 @@ void	draw_walls(t_map *map, int i)
 {
 	int		j;
 	double	wall_height;
-
+	
 	wall_height = distance_to_wall(map) / 2;
+	
 	if (wall_height > 0 && wall_height <= (SCREEN_H / 2))
 	{
 		draw_floor(map->cub, wall_height, i);
