@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:44:11 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 13:58:29 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/16 12:15:24 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void	draw_line(t_map *map, double x, double y, int color)
 	y0 = map->player->pos_y;
 	while (map->i < step)
 	{
-		ft_put_pixel(map->minimap, x0, y0, color);
+		if (x0 > 0 && y0 > 0 && x0 < SCREEN_W && y0 < SCREEN_H) 
+			ft_put_pixel(map->minimap, x0, y0, color);
 		x0 += dx;
 		y0 += dy;
 		map->i++;

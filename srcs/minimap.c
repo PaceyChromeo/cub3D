@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 13:41:50 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/16 12:14:40 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static t_img	*minimap_init(t_map *map)
 	minimap->img_ptr = mlx_new_image(map->mlx_ptr, SCREEN_W, SCREEN_H);
 	minimap->adr = mlx_get_data_addr(minimap->img_ptr,
 			&minimap->bpp, &minimap->line_length, &minimap->endian);
-	minimap->line = (double)(SCREEN_H) / map->count_line;
-	minimap->column = (double)(SCREEN_W) / map->line_length;
+	minimap->line = SCREEN_H / map->count_line;
+	minimap->column = SCREEN_W / map->line_length;
 	if (minimap->line > minimap->column)
-		minimap->square = floor(minimap->column);
+	 	minimap->square = floor(minimap->column);
 	else
-		minimap->square = floor(minimap->line);
+	 	minimap->square = floor(minimap->line);
 	return (minimap);
 }
 
@@ -35,7 +35,7 @@ void	display_minimap(t_map *map, int i, int y)
 {
 	int	x;
 	int	j;
-
+	
 	while (map->tab[i])
 	{
 		x = 0;

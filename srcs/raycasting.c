@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 20:09:10 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 12:32:13 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,19 @@ void	draw_rays(t_map *map)
 	double	ray;
 	int		i;
 
-	ray = map->player->angle - convert_degre_to_radian(30);
+	ray = map->player->angle - convert_degre_to_radian(15);
 	if (ray > 2 * PI)
 		ray -= 2 * PI;
 	else if (ray < 0)
 		ray += 2 * PI;
 	i = 0;
-	while (i < 640)
+	while (i < SCREEN_W)
 	{
 		map->raycast->ra = ray;
 		check_walls(map, map->raycast);
-		draw_line(map, map->raycast->rx, map->raycast->ry, WHITE);
-		//display_minimap(map, 0, 0);
+		//draw_line(map, map->raycast->rx, map->raycast->ry, WHITE);
 		draw_walls(map, i);
-		ray += convert_degre_to_radian(0.1);
+		ray += convert_degre_to_radian(0.05);
 		if (ray > 2 * PI)
 			ray -= 2 * PI;
 		else if (ray < 0)

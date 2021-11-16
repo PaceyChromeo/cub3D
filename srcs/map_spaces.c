@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_spaces.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:03:25 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 11:25:00 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/16 11:05:56 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	check_in(t_map *map, int i, int j)
 {
-	if (i > 0 && i < map->count_line - 1 && j > 0 && j < map->max_len - 1)
+	if (i > 0 && i < map->count_line - 1 && j > 0 && j < map->line_length - 1)
 	{
 		if ((map->tab[i + 1][j] != '1' && map->tab[i + 1][j] != ' ')
 			|| (map->tab[i - 1][j] != '1' && map->tab[i - 1][j] != ' '))
@@ -52,7 +52,7 @@ static int	check_around_map(t_map *map, int i, int j)
 		if (map->tab[i - 1][j] != ' ' && map->tab[i - 1][j] != '1')
 			return (1);
 	}
-	if (i > 0 && i < map->count_line - 1 && j == map->max_len - 1)
+	if (i > 0 && i < map->count_line - 1 && j == map->line_length - 1)
 	{
 		if (map->tab[i + 1][j] != ' ' && map->tab[i + 1][j] != '1')
 			return (1);

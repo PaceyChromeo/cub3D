@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 11:47:48 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 10:24:56 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 12:21:55 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	draw_floor(t_img *cub, double half_wall, int i)
 		ft_put_pixel(cub, i, j, BLACK);
 		j++;
 	}
-	while (j < 400)
+	while (j < SCREEN_H)
 	{
 		ft_put_pixel(cub, i, j, cub->fl);
 		j++;
@@ -50,13 +50,13 @@ static void	draw_ceiling(t_img *cub, double half_wall, int i)
 	int	ceiling;
 
 	j = 0;
-	ceiling = 200 - half_wall;
+	ceiling = (SCREEN_H / 2) - half_wall;
 	while (j < ceiling)
 	{
 		ft_put_pixel(cub, i, j, cub->ceil);
 		j++;
 	}
-	while (j < 200)
+	while (j < (SCREEN_H / 2))
 	{
 		ft_put_pixel(cub, i, j, BLACK);
 		j++;
@@ -84,7 +84,7 @@ void	draw_walls(t_map *map, int i)
 	double	wall_height;
 
 	wall_height = distance_to_wall(map) / 2;
-	if (wall_height > 0 && wall_height <= 200)
+	if (wall_height > 0 && wall_height <= (SCREEN_H / 2))
 	{
 		draw_floor(map->cub, wall_height, i);
 		draw_ceiling(map->cub, wall_height, i);
@@ -92,9 +92,9 @@ void	draw_walls(t_map *map, int i)
 	else
 	{
 		j = 0;
-		while (j < 400)
+		while (j < SCREEN_H)
 		{
-			ft_put_pixel(map->cub, i, j, RED);
+			ft_put_pixel(map->cub, i, j, BLACK);
 			j++;
 		}
 	}	

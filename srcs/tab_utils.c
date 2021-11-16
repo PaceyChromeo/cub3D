@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:14:51 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 16:57:17 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 11:33:24 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	get_tabnorm2(t_map *map, char **tmp, int index, int j)
 {
 	while (tmp[index])
 	{
-		map->tab[j] = get_line(tmp[index], map->max_len);
+		map->tab[j] = get_line(tmp[index], map->line_length);
 		free(tmp[index]);
 		j++;
 		index++;

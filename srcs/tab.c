@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 16:57:01 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 11:10:01 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ static void	get_tabnorm(char **tmp, t_map *map)
 	{
 		get_next_line(fd, &line);
 		tmp[i] = ft_strdup(line);
-		if (ft_strlen(tmp[i]) > (size_t)map->line_length)
-			map->line_length = ft_strlen(tmp[i]);
 		i++;
 		free(line);
 	}
@@ -130,7 +128,7 @@ int	get_tab(t_map *map, int j, int index, int ok)
 		return (1);
 	count = count_lines(tmp, map->i);
 	map->tab = malloc(sizeof(map->tab) * count + 1);
-	map->max_len = get_max(tmp, map->i);
+	map->line_length = get_max(tmp, map->i);
 	get_tabnorm2(map, tmp, index, j);
 	map->count_line = count;
 	free(tmp);

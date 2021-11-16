@@ -6,7 +6,7 @@
 /*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 19:32:49 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/16 12:13:53 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <mlx.h>
 # include "../libft/libft.h"
 
+# define SQUARE 64
 # define SCREEN_H 400
 # define SCREEN_W 640
 # define ESC 53
@@ -64,16 +65,16 @@ typedef struct	s_raycast
 
 typedef struct	s_img
 {
-	void	*img_ptr;
-	char	*adr;
-	int		line_length;
-	int		bpp;
-	int		endian;
-	double	line;
-	double		column;
-	double		square;
-	unsigned int fl;
-	unsigned int ceil;
+	void			*img_ptr;
+	char			*adr;
+	int				line_length;
+	int				bpp;
+	int				endian;
+	double			line;
+	double			column;
+	double			square;
+	unsigned int	fl;
+	unsigned int	ceil;
 }				t_img;
 
 typedef struct	s_player
@@ -98,7 +99,6 @@ typedef struct	s_map
 	char		**tab;
 	char		*map_name;
 	int			line_length;
-	int			max_len;
 	int			count_line;
 	int			pl_x;
 	int			pl_y;
