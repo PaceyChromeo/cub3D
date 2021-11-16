@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/15 11:32:03 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/15 16:57:01 by hkrifa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 static int	check_line(char *line)
 {
 	int	i;
-
+	int ok;
+	
 	i = 0;
+	ok = 0;
 	while (line[i])
 	{
 		if (line[0] == '1' || line[0] == ' ')
@@ -106,39 +108,30 @@ char	*get_line(char *line, int max)
 	return (new);
 }
 
-int	get_tab(t_map *map)
+int	get_tab(t_map *map, int j, int index, int ok)
 {
-	int		i;
-	int		j;
-	int		index;
 	int		count;
 	char	**tmp;
-
-	i = 0;
-	j = 0;
-	index = 0;
+	
+	map->i = 0;
 	tmp = get_tab_tmp(map);
-	while (tmp[i])
+	while (tmp[map->i])
 	{
-		if (check_line(tmp[i]))
+		if (check_line(tmp[map->i]))
 		{
-			index = i;
+			index = map->i;
+			ok++;
 			break ;
 		}
-		free(tmp[i]);
-		i++;
+		free(tmp[map->i]);
+		map->i++;
 	}
-	count = count_lines(tmp, i);
+	if (ok != 1)
+		return (1);
+	count = count_lines(tmp, map->i);
 	map->tab = malloc(sizeof(map->tab) * count + 1);
-	map->max_len = get_max(tmp, i);
-	while (tmp[index])
-	{
-		map->tab[j] = get_line(tmp[index], map->max_len);
-		free(tmp[index]);
-		j++;
-		index++;
-	}
-	map->tab[j] = NULL;
+	map->max_len = get_max(tmp, map->i);
+	get_tabnorm2(map, tmp, index, j);
 	map->count_line = count;
 	free(tmp);
 	return (0);
