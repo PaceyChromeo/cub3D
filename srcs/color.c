@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/05 13:38:13 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 11:11:07 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:31:44 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	get_color(char *line, t_map *map, int *color)
 	else
 		put_color_in_map(line[0], split, map, color);
 	free(trim);
-	free_tab(split);
+	free_tab((void **)split);
 	return (0);
 }
 

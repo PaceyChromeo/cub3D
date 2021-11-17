@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 14:46:49 by pacey             #+#    #+#             */
-/*   Updated: 2021/11/15 11:13:37 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/17 13:13:26 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ int	check_texture_file(char *file)
 	int	i;
 
 	i = 0;
-	if (!file || !file[i] || file[i] == '.')
+	if (!file || !file[i] || (file[i] == '.' && file[i + 1] != '/'))
 		return (printf("Error: enter a valid texture format :*.xpm\n"));
+	else if (file[i] == '.' && file[i + 1] == '/')
+		i++;
 	while (file[i] && file[i] != '.')
 		i++;
 	if (file[i++] != '.')

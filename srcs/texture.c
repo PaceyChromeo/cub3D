@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 12:59:12 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/15 13:41:02 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:33:01 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	get_texture(char *line, t_map *map, int *text)
 		if (check_texture_file(split[1]))
 			return (1);
 	}
-	free_tab(split);
+	free_tab((void **)split);
 	return (0);
 }
 

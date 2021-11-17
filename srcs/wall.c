@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:02:49 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 12:26:34 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/17 17:13:39 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ static void	check_horizontal_looking_up(t_map *map,
 			/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
-	while (map->tab[raycast->coord_y][raycast->coord_x]
-		&& map->tab[raycast->coord_y][raycast->coord_x] == '0'
-		&& next_x > 0
+	while (map->tab[raycast->coord_y][raycast->coord_x] == '0'
+		&& next_x > 0 && raycast->coord_x > 0 && raycast->coord_y > 0
 		&& next_x < map->line_length * map->minimap->square
 		&& next_y > 0)
 	{
@@ -45,9 +44,8 @@ static void	check_horizontal_looking_down(t_map *map,
 			/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
-	while (map->tab[raycast->coord_y][raycast->coord_x]
-		&& map->tab[raycast->coord_y][raycast->coord_x] == '0'
-		&& next_x > 0
+	while (map->tab[raycast->coord_y][raycast->coord_x] == '0'
+		&& next_x > 0 && raycast->coord_x > 0 && raycast->coord_y > 0
 		&& next_x < map->line_length * map->minimap->square
 		&& next_y < map->count_line * map->minimap->square)
 	{
@@ -70,6 +68,7 @@ static void	check_vertical_looking_left(t_map *map,
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
 	while (next_x > 0 && next_y > 0
+		&& raycast->coord_x > 0 && raycast->coord_y > 0
 		&& next_x < map->line_length * map->minimap->square
 		&& next_y < map->count_line * map->minimap->square
 		&& map->tab[raycast->coord_y][raycast->coord_x] == '0')
@@ -92,6 +91,7 @@ static void	check_vertical_looking_right(t_map *map,
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
 	while (next_x > 0 && next_y > 0
+		&& raycast->coord_x > 0 && raycast->coord_y > 0
 		&& next_x < map->line_length * map->minimap->square
 		&& next_y < map->count_line * map->minimap->square
 		&& map->tab[raycast->coord_y][raycast->coord_x] == '0')

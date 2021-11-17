@@ -1,7 +1,7 @@
-NO wall_brick.xpm
-SO wall_metal.xpm
-WE wall_water.xpm
-EA wall_wood.xpm
+WE ./texture/colorstone.xpm
+NO ./texture/eagle.xpm
+SO ./texture/wood.xpm
+EA ./texture/redbrick.xpm
 
 F 255,179,184
 C 255,251,224

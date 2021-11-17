@@ -6,11 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/11/16 14:01:37 by hkrifa           ###   ########.fr       */
-=======
-/*   Updated: 2021/11/16 14:52:35 by pjacob           ###   ########.fr       */
->>>>>>> ea778636d54e71d9335a707fce518dd14c281dfc
+/*   Updated: 2021/11/17 17:17:29 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +53,31 @@
 # define DARK_BLUE 0x3e6358
 # define LIGHT_CYAN 0x6eccc4
 
-typedef struct	s_raycast
+typedef struct s_raycast
 {
 	double	ra;
 	double	rx;
 	double	ry;
 	int		coord_x;
 	int		coord_y;
-	int		ray_dir;
-	int		vertical;
+	int		wall_hit;
 }				t_raycast;
 
+typedef struct s_text
+{
+	void			*img_ptr;
+	int				*adr_text;
+	int				bpp;
+	int				line_length;
+	int				endian;
+	int				width;
+	int				height;
+	int				tx;
+	int				ty;
+	int				index;	
+}				t_text;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void			*img_ptr;
 	char			*adr;
@@ -85,7 +93,7 @@ typedef struct	s_img
 	unsigned int	ceil;
 }				t_img;
 
-typedef struct	s_player
+typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
@@ -94,7 +102,7 @@ typedef struct	s_player
 	double	angle;
 }				t_player;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	void		*mlx_ptr;
 	void		*mlx_win;
@@ -112,78 +120,84 @@ typedef struct	s_map
 	int			pl_y;
 	char		pl_view;
 	int			i;
+	int			fd;
 	double		dist;
 	double		dpp;
 	t_img		*minimap;
 	t_player	*player;
 	t_raycast	*raycast;
 	t_img		*cub;
+	t_text		text[4];
 }				t_map;				
 
 /************   COLOR    *********/
-int		get_colors(int fd, t_map *map);
-unsigned int	convert_rgb_floor(t_map *map);
-unsigned int	convert_rgb_ceiling(t_map *map);
+int				get_colors(int fd, t_map *map);
 /************   CUB    *********/
-t_img	*cub_init(t_map *map);
+int				cub_init(t_map *map);
+/************   CONVERT_RGB    *********/
+unsigned int	convert_rgb_ceiling(t_map *map);
+unsigned int	convert_rgb_floor(t_map *map);
+int				init_texture(t_map *map);
 /************   DEBUG    *********/
-int		print_or_count_tab(char **tab, int poc);
-void	print_map(t_map *map);
+int				print_or_count_tab(char **tab, int poc);
+void			print_map(t_map *map);
 /************   DRAW    *********/
-void	draw_square(t_map *map, int x, int y, int color);
-void	draw_grid(t_map *map);
-void	draw_player(t_map *map, double x, double y, int color);
-void	draw_player_line(t_map *map, double x, double y, int color);
-void	draw_line(t_map *map, double x, double y, int color);
+void			draw_square(t_map *map, int x, int y, int color);
+void			draw_grid(t_map *map);
+void			draw_player(t_map *map, double x, double y, int color);
+void			draw_player_line(t_map *map, double x, double y, int color);
+void			draw_line(t_map *map, double x, double y, int color);
 /************   DISTANCE   *********/
-void	draw_walls(t_map *map, int i);
+void			draw_walls(t_map *map, int i);
 /************   FILE    *********/
-int		check_file(char *file);
-int		check_texture_file(char *file);
+int				check_file(char *file);
+int				check_texture_file(char *file);
 /************   FREE_STUFFS    *********/
-void	free_tab(char **tab);
-void	free_and_close(t_map *map, int fd);
+void			free_tab(void **tab);
+void			free_and_close(t_map *map, int fd);
 /************   KEY    *********/
-void	deal_up_key(t_map *map);
-void	deal_left_key(t_map *map);
-void	deal_down_key(t_map *map);
-void	deal_right_key(t_map *map);
-void	deal_left_arrow(t_map *map);
-void	deal_right_arrow(t_map *map);
+void			deal_up_key(t_map *map);
+void			deal_left_key(t_map *map);
+void			deal_down_key(t_map *map);
+void			deal_right_key(t_map *map);
+void			deal_left_arrow(t_map *map);
+void			deal_right_arrow(t_map *map);
 /************   LOOP    *********/
-int		img_loop(t_map *map);
+int				img_loop(t_map *map);
 /************   MAP    *********/
-t_map	*get_map(int fd, char *av);
+t_map			*get_map(int fd, char *av);
 /************   MAP ERRORS    *********/
-char	*get_line(char *line, int max);
-int		check_valid_map(t_map *map);
-int		check_valid_walls(t_map *map);
-int 	check_valid_spaces(t_map *map);
+char			*get_line(char *line, int max);
+int				check_valid_map(t_map *map);
+int				check_valid_walls(t_map *map);
+int				check_valid_spaces(t_map *map);
 /************   MINIMAP    *********/
-int		get_minimap(t_map *map);
-void	display_minimap(t_map *map, int i, int y);
+int				get_minimap(t_map *map);
+void			display_minimap(t_map *map, int i, int y);
 /************   MLX_HOOK    *********/
-int		close_win(void);
-int		deal_keys(int keycode, t_map *map);
+int				close_win(t_map *map);
+int				deal_keys(int keycode, t_map *map);
 /************   PLAYER    *********/
-int		get_player(t_map *map);
+int				get_player(t_map *map);
 /************   RAYCASTING    *********/
-void	keep_closest_point(t_raycast *raycast, double next_x, double next_y);
-void	draw_rays(t_map *map);
-void	raycasting(t_map *map);
+void			keep_closest_point(t_raycast *raycast,
+					double next_x, double next_y);
+void			draw_rays(t_map *map);
+void			raycasting(t_map *map);
 /************   TAB    *********/
-int		get_tab(t_map *map, int j, int index, int ok);
-void	get_tabnorm2(t_map *map, char **tmp, int index, int j);
-int		count_lines(char **tmp, int i);
-int		get_max(char **tmp, int i);
+int				get_tab(t_map *map, int j, int index, int ok);
+void			get_tabnorm2(t_map *map, char **tmp, int index, int j);
+int				count_lines(char **tmp, int i);
+int				get_max(char **tmp, int i);
 /************   TEXTURE    *********/
-int		get_textures(int fd, t_map *map);
+int				get_textures(int fd, t_map *map);
 /************   UTILS    *********/
-void	ft_put_pixel(t_img *minimap, int x, int y, int color);
-double	convert_degre_to_radian(double degre);
-double	convert_radian_to_degre(double radian);
-double	square_dble(double nb);
+void			ft_put_pixel(t_img *minimap, int x, int y, int color);
+double			convert_degre_to_radian(double degre);
+double			convert_radian_to_degre(double radian);
+double			square_dble(double nb);
+int				find_color_in_xpm_file(t_map *map, double wall_height, int j);
 /************   WALL    *********/
-void	check_walls(t_map *map, t_raycast *raycast);
+void			check_walls(t_map *map, t_raycast *raycast);
 
 #endif

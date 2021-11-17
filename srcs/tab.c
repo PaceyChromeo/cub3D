@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tab.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 10:22:35 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/16 11:10:01 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/17 17:10:33 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static int	check_line(char *line)
 {
 	int	i;
-	int ok;
-	
+
 	i = 0;
-	ok = 0;
 	while (line[i])
 	{
 		if (line[0] == '1' || line[0] == ' ')
@@ -110,7 +108,7 @@ int	get_tab(t_map *map, int j, int index, int ok)
 {
 	int		count;
 	char	**tmp;
-	
+
 	map->i = 0;
 	tmp = get_tab_tmp(map);
 	while (tmp[map->i])

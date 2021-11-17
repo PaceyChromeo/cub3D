@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:00:03 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 11:53:57 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/17 17:09:24 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static int	get_player_angle(t_map *map)
 		map->player->angle = PI;
 	else if (map->pl_view == 'E')
 		map->player->angle = 0;
-	map->player->delta_x = cos(map->player->angle) * 10;
-	map->player->delta_y = sin(map->player->angle) * 10;
+	map->player->delta_x = cos(map->player->angle) * 5;
+	map->player->delta_y = sin(map->player->angle) * 5;
 	return (0);
 }
 

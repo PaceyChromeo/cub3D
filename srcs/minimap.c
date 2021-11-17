@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkrifa <hkrifa@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 12:55:45 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/16 14:02:36 by hkrifa           ###   ########.fr       */
+/*   Updated: 2021/11/17 17:09:22 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static t_img	*minimap_init(t_map *map)
 	minimap->line = SCREEN_H / map->count_line;
 	minimap->column = SCREEN_W / map->line_length;
 	if (minimap->line > minimap->column)
-	 	minimap->square = floor(minimap->column);
+		minimap->square = floor(minimap->column);
 	else
-	 	minimap->square = floor(minimap->line);
+		minimap->square = floor(minimap->line);
 	return (minimap);
 }
 
@@ -35,7 +35,7 @@ void	display_minimap(t_map *map, int i, int y)
 {
 	int	x;
 	int	j;
-	
+
 	while (map->tab[i])
 	{
 		x = 0;

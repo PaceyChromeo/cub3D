@@ -31,15 +31,8 @@ SRC = ${addprefix srcs/,	color.c \
 
 OBJ = ${SRC:.c=.o}
 
-UNAME = ${shell uname -s}
-ifeq (${UNAME}, Linux)
-	LIB_MLX = -Lmlx_linux/ -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-	INC_MLX = -I/usr/include -Imlx_linux -O3
-endif
-ifeq (${UNAME}, Darwin)
-	LIB_MLX = -lmlx -framework OpenGL -framework AppKit
-	INC_MLX = -Imlx
-endif
+LIB_MLX = -lmlx -framework OpenGL -framework AppKit
+INC_MLX = -Imlx
 
 %o:%c
 	@printf "Please wait...\r"
@@ -50,7 +43,7 @@ ${NAME}: ${OBJ}
 	@make -C libft/
 	@mv libft/libft.a cub3D.a
 	@ar rcs $(LIB_NAME) $(OBJ)
-	@${CC} -g ${LIB_MLX} ${LIB_NAME} -o ${NAME} $?
+	@${CC} ${LIB_MLX} ${LIB_NAME} -o ${NAME} $?
 	@printf "${NAME} created\n"
 clean:
 	@make -C libft/ clean

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 11:10:10 by by pjacob         #+#    #+#             */
-/*   Updated: 2021/11/15 13:49:53 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/17 11:42:54 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	deal_right_key(t_map *map)
 	int		cx;
 	int		cy;
 
-	x = cos(map->player->angle + (PI / 2)) * 10;
-	y = sinf(map->player->angle + (PI / 2)) * 10;
+	x = cos(map->player->angle + (PI / 2)) * 5;
+	y = sinf(map->player->angle + (PI / 2)) * 5;
 	x += map->player->pos_x;
 	y += map->player->pos_y;
 	if (x > 0 && y > 0
