@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:02:49 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/17 17:13:39 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/18 12:54:57 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@ static void	check_horizontal_looking_up(t_map *map,
 {
 	next_y = floor(map->player->pos_y / map->minimap->square)
 		* map->minimap->square - 0.000001;
-	next_x = map->player->pos_x - ((map->player->pos_y - next_y)
+	if (map->player->pos_x - ((map->player->pos_y - next_y)
+			/ tan(raycast->ra)) < 0)
+		next_x = 0;
+	else if (map->player->pos_x - ((map->player->pos_y - next_y)
+			/ tan(raycast->ra)) > SCREEN_W * map->minimap->square)
+		next_x = SCREEN_W * map->minimap->square;
+	else
+		next_x = map->player->pos_x - ((map->player->pos_y - next_y)
 			/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
@@ -40,7 +47,14 @@ static void	check_horizontal_looking_down(t_map *map,
 {
 	next_y = floor(map->player->pos_y / map->minimap->square)
 		* (map->minimap->square) + map->minimap->square;
-	next_x = map->player->pos_x - ((map->player->pos_y - next_y)
+	if (map->player->pos_x - ((map->player->pos_y - next_y)
+			/ tan(raycast->ra)) < 0)
+		next_x = 0;
+	else if (map->player->pos_x - ((map->player->pos_y - next_y)
+			/ tan(raycast->ra)) > SCREEN_W * map->minimap->square)
+		next_x = SCREEN_W * map->minimap->square;
+	else
+		next_x = map->player->pos_x - ((map->player->pos_y - next_y)
 			/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;

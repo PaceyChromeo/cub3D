@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/17 17:17:29 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/18 12:05:17 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define D_KEY 2
 # define L_KEY 123
 # define R_KEY 124
-# define PI 3.141593
+# define PI 3.141592653
 # define BLACK 0x000000
 # define GREY 0x808080
 # define SILVER 0xC0C0C0

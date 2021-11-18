@@ -43,7 +43,7 @@ ${NAME}: ${OBJ}
 	@make -C libft/
 	@mv libft/libft.a cub3D.a
 	@ar rcs $(LIB_NAME) $(OBJ)
-	@${CC} ${LIB_MLX} ${LIB_NAME} -o ${NAME} $?
+	@${CC} ${LIB_MLX} ${LIB_NAME} -fsanitize=address -o ${NAME} $?
 	@printf "${NAME} created\n"
 clean:
 	@make -C libft/ clean
