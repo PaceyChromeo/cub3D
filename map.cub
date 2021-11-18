@@ -1,7 +1,7 @@
 WE ./texture/colorstone.xpm
-NO ./texture/eagle.xpm
-SO ./texture/wood.xpm
-EA ./texture/redbrick.xpm
+NO ./texture/Mago_content.xpm
+SO ./texture/Mago_facher.xpm
+EA ./texture/eagle.xpm
 
 F 255,179,184
 C 255,251,224
