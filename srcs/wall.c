@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 12:02:49 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/18 12:54:57 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/18 12:56:43 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	check_horizontal_looking_up(t_map *map,
 		next_x = SCREEN_W * map->minimap->square;
 	else
 		next_x = map->player->pos_x - ((map->player->pos_y - next_y)
-			/ tan(raycast->ra));
+				/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
 	while (map->tab[raycast->coord_y][raycast->coord_x] == '0'
@@ -55,7 +55,7 @@ static void	check_horizontal_looking_down(t_map *map,
 		next_x = SCREEN_W * map->minimap->square;
 	else
 		next_x = map->player->pos_x - ((map->player->pos_y - next_y)
-			/ tan(raycast->ra));
+				/ tan(raycast->ra));
 	raycast->coord_x = next_x / map->minimap->square;
 	raycast->coord_y = next_y / map->minimap->square;
 	while (map->tab[raycast->coord_y][raycast->coord_x] == '0'
