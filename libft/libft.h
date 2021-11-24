@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 11:38:19 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/05 11:59:50 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 14:18:26 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 4096
 # endif
+
 typedef struct s_list
 {
 	void			*content;

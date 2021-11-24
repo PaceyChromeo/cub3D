@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/18 12:05:17 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 14:01:45 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int				cub_init(t_map *map);
 unsigned int	convert_rgb_ceiling(t_map *map);
 unsigned int	convert_rgb_floor(t_map *map);
 int				init_texture(t_map *map);
+int				ft_line_is_wrong(char *line);
 /************   DEBUG    *********/
 int				print_or_count_tab(char **tab, int poc);
 void			print_map(t_map *map);

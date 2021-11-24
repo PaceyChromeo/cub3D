@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 12:59:12 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/17 11:33:01 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 14:01:53 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int	get_textures(int fd, t_map *map)
 		return (printf("Error: texture\n"));
 	while (gnl > 0)
 	{
+		if (line && ft_line_is_wrong(line))
+			return (1);
 		if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 			|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
 			if (get_texture(line, map, texture))

@@ -6,7 +6,7 @@
 /*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 18:53:43 by hkrifa            #+#    #+#             */
-/*   Updated: 2021/11/17 17:14:31 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 14:18:39 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,30 @@ int	init_texture(t_map *map)
 	map->text[3].adr_text = (int *)mlx_get_data_addr(map->text[3].img_ptr,
 			&map->text[3].bpp, &map->text[3].line_length, &map->text[3].endian);
 	return (0);
+}
+
+int	ft_line_is_wrong(char *line)
+{
+	int	i;
+
+	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
+		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3)
+		|| !ft_strncmp(line, "F ", 2) || !ft_strncmp(line, "C ", 2)
+		|| !line[0])
+		return (0);
+	else if (line[0] == ' ' || line[0] == '1')
+	{
+		i = 1;
+		while (line[i])
+		{
+			if (line[i] != ' ' && line[i] != '0' && line[i] != '1'
+				&& line[i] != 'N' && line[i] != 'S'
+				&& line[i] != 'E' && line[i] != 'W')
+				return (printf("Error: wrong line: %s\n", line));
+			i++;
+		}
+		return (0);
+	}
+	else
+		return (printf("Error: wrong line: %s\n", line));
 }
