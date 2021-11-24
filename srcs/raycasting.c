@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/17 16:57:47 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 21:45:17 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_rays(t_map *map)
 	}
 }
 
-void	raycasting(t_map *map)
+int	raycasting(t_map *map)
 {
 	map->raycast = ft_calloc(sizeof(t_raycast), 1);
 	if (!map->raycast)
@@ -95,6 +95,7 @@ void	raycasting(t_map *map)
 	map->raycast->coord_y = 0;
 	map->raycast->wall_hit = 0;
 	if (cub_init(map))
-		return ;
+		return (1);
 	draw_rays(map);
+	return (0);
 }

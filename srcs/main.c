@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:40:59 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/17 11:29:08 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 21:46:39 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static int	launch_cub(t_map *map)
 	map->mlx_win = mlx_new_window(map->mlx_ptr, SCREEN_W, SCREEN_H, "cub3D");
 	get_minimap(map);
 	get_player(map);
-	raycasting(map);
+	if (raycasting(map))
+		return (1);
 	mlx_hook(map->mlx_win, 2, 0, deal_keys, map);
 	mlx_hook(map->mlx_win, 17, 0, close_win, map);
 	mlx_loop_hook(map->mlx_ptr, img_loop, map);

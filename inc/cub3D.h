@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjacob <pjacob@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 10:36:35 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/24 14:01:45 by pjacob           ###   ########.fr       */
+/*   Updated: 2021/11/24 21:46:56 by pacey            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ int				get_player(t_map *map);
 void			keep_closest_point(t_raycast *raycast,
 					double next_x, double next_y);
 void			draw_rays(t_map *map);
-void			raycasting(t_map *map);
+int				raycasting(t_map *map);
 /************   TAB    *********/
 int				get_tab(t_map *map, int j, int index, int ok);
 void			get_tabnorm2(t_map *map, char **tmp, int index, int j);
