@@ -6,7 +6,7 @@
 /*   By: pacey <pacey@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 12:21:30 by pjacob            #+#    #+#             */
-/*   Updated: 2021/11/24 21:45:17 by pacey            ###   ########.fr       */
+/*   Updated: 2021/11/25 15:29:56 by pjacob           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int	raycasting(t_map *map)
 {
 	map->raycast = ft_calloc(sizeof(t_raycast), 1);
 	if (!map->raycast)
-		return ;
+		return (1);
 	map->cub = ft_calloc(sizeof(t_img), 1);
 	if (!map->cub)
-		return ;
+		return (1);
 	map->raycast->ra = 0.0;
 	map->raycast->rx = 0.0;
 	map->raycast->ry = 0.0;
